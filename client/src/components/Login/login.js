@@ -2,19 +2,22 @@ import React, { useState } from 'react';
 import './login-style.scss';
 import './login-theme.scss';
 
+import Auth from '../../utils/auth';
 // import { LOGIN } from '../../utils/mutations';
 
 const Login = () => {
     const [formState, setFormState] = useState({ email: '', password: '' });
+    
     const [login, { error }] = useMutation(LOGIN);
 
     const handleLoginSubmit = async (event) => {
         event.preventDefault();
         try {
-            const editedInput = await login({
+            const editedInputResponse = await login({
                 variables: { email: formState.email, password: formState.password }
             });
-            const token = editedResponse.data.login.token;
+            const token = editedInputResponse.data.login.token;
+            Auth.login(token);
         } catch (err) {
             console.log(err);
         }
@@ -33,7 +36,7 @@ const Login = () => {
             <h2>Login</h2>
             <form onSubmit={handleLoginSubmit}>
                 <div>
-                    <label htmlFor='email'>Email Address</label>
+                    <label htmlFor='email'>Email Address:</label>
                     <input
                         placeholder='example@email.com'
                         name='email'
@@ -43,7 +46,7 @@ const Login = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor='loginpwd'>Password</label>
+                    <label htmlFor='loginpwd'>Password:</label>
                     <input
                         placeholder='********'
                         name='passowrd'
@@ -53,6 +56,7 @@ const Login = () => {
                     />
                 </div>
             </form>
+            <button type='submit'>Login!</button>
             {error && <div>Login Failed!</div>}
         </div>
     )
