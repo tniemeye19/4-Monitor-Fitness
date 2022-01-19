@@ -1,4 +1,6 @@
 import React from 'react';
+import './signup-style.scss';
+import './signup-theme.scss';
 
 const Signup = () => {
 

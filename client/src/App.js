@@ -3,9 +3,9 @@ import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@ap
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import LandingPage from './pages/LandingPage';
-import SettingsPage from './pages/SettingsPage';
-import StatisticsPage from './pages/StatisticsPage';
+import LandingPage from './components/LandingPage/landing-page';
+import SettingsPage from './components/SettingsPage/settings-page';
+import StatisticsPage from './components/StatisticsPage/statistics-page';
 
 import './App.css';
 

@@ -1,4 +1,6 @@
 import React from 'react';
+import './statistics-page-style.scss';
+import './statistics-page-theme.scss';
 
 const StatisticsPage = () => {
 
