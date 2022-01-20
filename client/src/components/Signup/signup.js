@@ -87,13 +87,8 @@ const Signup = () => {
                     )} */}
                 </div>
                 <div>
-<<<<<<< HEAD
                     <FormLabel htmlFor='signuppwd'>Username:</FormLabel>
                     <Input
-=======
-                    <label htmlFor='signuppwd'>Password:</label>
-                    <input
->>>>>>> 827613e866c5dd9947ee45d4b77690a00b2124c6
                         placeholder='********'
                         name='password'
                         type='password'
