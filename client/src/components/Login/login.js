@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import './login-style.scss';
 import './login-theme.scss';
 
+import { 
+    Button,
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Input 
+} from '@chakra-ui/react';
+
 import Auth from '../../utils/auth';
 // import { LOGIN } from '../../utils/mutations';
 
@@ -10,7 +18,22 @@ const Login = () => {
     
     // const [login, { error }] = useMutation(LOGIN);
 
+    const accountForChange = (event) => {
+        const { name, value } = event.target;
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    };
+
     const handleLoginSubmit = async (event) => {
+
+        // const form = event.currentTarget;
+        // if (form.checkValidity() === false) {
+        //     event.preventDefault();
+        //     event.stopPropagation();
+        // }
+
         // event.preventDefault();
         // try {
         //     const editedInputResponse = await login({
@@ -23,41 +46,51 @@ const Login = () => {
         // }
     };
 
-    const accountForChange = (event) => {
-        const { name, value } = event.target;
-        setFormState({
-            ...formState,
-            [name]: value,
-        });
-    };
-
     return (
-        <div className='login'>
-            <h2>Login</h2>
-            <form onSubmit={handleLoginSubmit}>
+        <div>
+        {Auth.loggedIn() ? null : (
+            <>
+            <FormControl onSubmit={handleLoginSubmit}>
                 <div>
-                    <label htmlFor='email'>Email Address:</label>
-                    <input
+                    <FormLabel htmlFor='email'>Email Address:</FormLabel>
+                    <Input
                         placeholder='example@email.com'
                         name='email'
                         type='email'
                         id='email'
                         onChange={accountForChange}
                     />
+                    {/* {error && (
+                        <FormErrorMessage>
+                            Email is required to login
+                        </FormErrorMessage>
+                    )} */}
                 </div>
                 <div>
-                    <label htmlFor='loginpwd'>Password:</label>
-                    <input
+                    <FormLabel htmlFor='loginpwd'>Password:</FormLabel>
+                    <Input
                         placeholder='********'
                         name='passowrd'
                         type='password'
                         id='loginpwd'
                         onChange={accountForChange}
                     />
+                    {/* {error && (
+                        <FormErrorMessage>
+                            Password is required to login
+                        </FormErrorMessage>
+                    )} */}
                 </div>
-            </form>
-            <button type='submit'>Login!</button>
-            {/* {error && <div>Login Failed!</div>} */}
+            </FormControl>
+            <Button 
+                colorScheme='teal' 
+                size='xs' 
+                type='submit'>Submit
+            </Button>
+            </>
+        )}
+
+
         </div>
     )
 }

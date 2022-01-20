@@ -4,7 +4,6 @@ import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import LandingPage from './components/LandingPage/landing-page';
-import SettingsPage from './components/SettingsPage/settings-page';
 import StatisticsPage from './components/StatisticsPage/statistics-page';
 
 import './App.css';
@@ -35,7 +34,6 @@ function App() {
         <>
           <Routes>
             <Route path='/' element={<LandingPage />} />
-            <Route path='/settings' element={<SettingsPage />} />
             <Route path='/statistics' element={<StatisticsPage />} />
           </Routes>
         </>

@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import './signup-style.scss';
 import './signup-theme.scss';
 
+import { 
+    Button,
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Input 
+} from '@chakra-ui/react';
+
 import Auth from '../../utils/auth';
 // import { CREATE_USER } from '../../utils/mutations';
 
@@ -11,19 +19,6 @@ const Signup = () => {
 
     // const [createUser, { error, data }] = useMutation(CREATE_USER);
 
-    const handleSignupSubmit = async (event) => {
-        // event.preventDefault();
-        // const editedInputResponse = await createUser({
-        //     variables: {
-        //         username: formstate.username,
-        //         email: formstate.email,
-        //         password: formstate.password
-        //     },
-        // });
-        // const token = editedInputResponse.data.createUser.token;
-        // Auth.login(token)
-    }
-
     const accountForChange = (event) => {
         const { name, value } = event.target;
         setFormState({
@@ -32,42 +27,87 @@ const Signup = () => {
         });
     };
 
+    const handleSignupSubmit = async (event) => {
+        // event.preventDefault();
+
+        // const form = event.currentTarget;
+        // if (form.checkValidity() === false) {
+        //     event.preventDefault();
+        //     event.stopPropagation();
+        // }
+
+        // try {
+        //     const { data } = await createUser({
+        //         variables: { ...formState },
+        //     });
+
+        //     Auth.login(data.createUser.token);
+        // } catch (err) {
+        //     console.log(err);
+        // }
+    }
+
     return (
         <div>
-            <h2>Signup</h2>
-            <form onSubmit={handleSignupSubmit}>
+        {Auth.loggedIn() ? null : (
+            <>
+            <FormControl onSubmit={handleSignupSubmit}>
                 <div>
-                    <label htmlFor='username'>Username:</label>
-                    <input
+                    <FormLabel htmlFor='username'>Username:</FormLabel>
+                    <Input
                         placeholder='Username'
                         name='username'
                         type='username'
                         id='username'
+                        value={formState.username}
                         onChange={accountForChange}
                     />
+                    {/* {error && (
+                        <FormErrorMessage>
+                            Username is required to signup
+                        </FormErrorMessage>
+                    )} */}
                 </div>
                 <div>
-                    <label htmlFor='email'>Email Address:</label>
-                    <input
+                    <FormLabel htmlFor='email'>Email Address:</FormLabel>
+                    <Input
                         placeholder='example@email.com'
                         name='email'
                         type='email'
                         id='email'
+                        value={formState.email}
                         onChange={accountForChange}
                     />
+                    {/* {error && (
+                        <FormErrorMessage>
+                            Email is required to signup
+                        </FormErrorMessage>
+                    )} */}
                 </div>
                 <div>
-                    <label htmlFor='signuppwd'>Username:</label>
-                    <input
+                    <FormLabel htmlFor='signuppwd'>Username:</FormLabel>
+                    <Input
                         placeholder='********'
                         name='password'
                         type='password'
                         id='signuppwd'
+                        value={formState.password}
                         onChange={accountForChange}
                     />
+                    {/* {error && (
+                        <FormErrorMessage>
+                            Password is required to signup
+                        </FormErrorMessage>
+                    )} */}
                 </div>
-                <button type='submit'>Signup!</button>
-            </form>
+                <Button 
+                    colorScheme='teal' 
+                    size='xs' 
+                    type='submit'>Submit
+                </Button>
+            </FormControl>
+            </>
+        )}
         </div>
     );
 };

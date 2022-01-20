@@ -2,22 +2,21 @@ import React from 'react';
 import './landing-page-style.scss';
 import './landing-page-theme.scss';
 
-import Login from '../Login/login';
-import Signup from '../Signup/signup';
+import Settings from '../SettingsPage/settings-page';
 
 const LandingPage = () => {
 
 
     return (
-        <div>
-            In the landing page!
-            <Login>
-                In Login!
-            </Login>
-            <Signup>
-                In Signup!
-            </Signup>
-        </div>
+        <>
+            <div>
+                <Settings />
+            </div>
+            <div>
+                <h2>WELCOME TO 4 MONITOR FITNESS</h2>
+                <p>This is where your fitness journey begins</p>
+            </div>
+        </>
     )
 }
 
