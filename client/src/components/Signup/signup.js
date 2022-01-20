@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import './signup-style.scss';
 import './signup-theme.scss';
 
@@ -11,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 
 import Auth from '../../utils/auth';
-// import { CREATE_USER } from '../../utils/mutations';
+import { ADD_USER } from '../../utils/mutations';
 
 const Signup = () => {
 
@@ -21,6 +22,7 @@ const Signup = () => {
 
     const accountForChange = (event) => {
         const { name, value } = event.target;
+
         setFormState({
             ...formState,
             [name]: value,
@@ -85,8 +87,13 @@ const Signup = () => {
                     )} */}
                 </div>
                 <div>
+<<<<<<< HEAD
                     <FormLabel htmlFor='signuppwd'>Username:</FormLabel>
                     <Input
+=======
+                    <label htmlFor='signuppwd'>Password:</label>
+                    <input
+>>>>>>> 827613e866c5dd9947ee45d4b77690a00b2124c6
                         placeholder='********'
                         name='password'
                         type='password'
