@@ -9,19 +9,19 @@ const Signup = () => {
 
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
 
-    const [createUser, { error, data }] = useMutation(CREATE_USER);
+    // const [createUser, { error, data }] = useMutation(CREATE_USER);
 
     const handleSignupSubmit = async (event) => {
-        event.preventDefault();
-        const editedInputResponse = await createUser({
-            variables: {
-                username: formstate.username,
-                email: formstate.email,
-                password: formstate.password
-            },
-        });
-        const token = editedInputResponse.data.createUser.token;
-        Auth.login(token)
+        // event.preventDefault();
+        // const editedInputResponse = await createUser({
+        //     variables: {
+        //         username: formstate.username,
+        //         email: formstate.email,
+        //         password: formstate.password
+        //     },
+        // });
+        // const token = editedInputResponse.data.createUser.token;
+        // Auth.login(token)
     }
 
     const accountForChange = (event) => {

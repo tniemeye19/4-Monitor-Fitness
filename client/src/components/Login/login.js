@@ -8,19 +8,19 @@ import Auth from '../../utils/auth';
 const Login = () => {
     const [formState, setFormState] = useState({ email: '', password: '' });
     
-    const [login, { error }] = useMutation(LOGIN);
+    // const [login, { error }] = useMutation(LOGIN);
 
     const handleLoginSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const editedInputResponse = await login({
-                variables: { email: formState.email, password: formState.password }
-            });
-            const token = editedInputResponse.data.login.token;
-            Auth.login(token);
-        } catch (err) {
-            console.log(err);
-        }
+        // event.preventDefault();
+        // try {
+        //     const editedInputResponse = await login({
+        //         variables: { email: formState.email, password: formState.password }
+        //     });
+        //     const token = editedInputResponse.data.login.token;
+        //     Auth.login(token);
+        // } catch (err) {
+        //     console.log(err);
+        // }
     };
 
     const accountForChange = (event) => {
@@ -57,7 +57,7 @@ const Login = () => {
                 </div>
             </form>
             <button type='submit'>Login!</button>
-            {error && <div>Login Failed!</div>}
+            {/* {error && <div>Login Failed!</div>} */}
         </div>
     )
 }
