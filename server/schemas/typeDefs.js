@@ -1,7 +1,5 @@
 const {gql} = require("apollo-server-express");
 
-//WILL ADD ME QUERY AFTER AUTH IS SET UP
-//WILL ADD LOGIN AND ADDUSER MUTATIONS AFTER AUTH IS SET UP 
 //WILL ADD REMOVEWORKOUT AND REMOVEEXERCISE IN THE FUTURE
 
 const typeDefs = gql`
@@ -24,10 +22,16 @@ const typeDefs = gql`
         _id: ID
         exerciseTitle: String
         exerciseDescription: String
-        createdAt
+        createdAt: String
+    }
+
+    type Auth {
+        token: ID!
+        user: User
     }
 
     type Query{
+        me: User
         users: [User]
         user(username: String!): User
         workouts(username: String): [Workout]
@@ -35,6 +39,8 @@ const typeDefs = gql`
     }
 
     type Mutation{
+        login(email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
         addWorkout(workoutTitle: String!): Workout
         addExercise(workoutId: ID!, exerciseTitle: String!): Workout
     }

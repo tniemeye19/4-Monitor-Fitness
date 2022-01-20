@@ -1,35 +1,41 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import './signup-style.scss';
 import './signup-theme.scss';
 
 import Auth from '../../utils/auth';
-// import { CREATE_USER } from '../../utils/mutations';
+import { ADD_USER } from '../../utils/mutations';
 
 const Signup = () => {
 
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
 
-    // const [createUser, { error, data }] = useMutation(CREATE_USER);
+    const [addUser, { error }] = useMutation(ADD_USER);
 
-    const handleSignupSubmit = async (event) => {
-        // event.preventDefault();
-        // const editedInputResponse = await createUser({
-        //     variables: {
-        //         username: formstate.username,
-        //         email: formstate.email,
-        //         password: formstate.password
-        //     },
-        // });
-        // const token = editedInputResponse.data.createUser.token;
-        // Auth.login(token)
-    }
-
+    //update state based on form input changes
     const accountForChange = (event) => {
         const { name, value } = event.target;
+
         setFormState({
             ...formState,
             [name]: value,
         });
+    };
+
+    //submit form
+    const handleSignupSubmit = async (event) => {
+        event.preventDefault();
+
+        try{
+            const {data} = await addUser({
+                variables: {...formState}
+            });
+            console.log(data);
+            Auth.login(data.addUser.token);
+        }
+        catch(e){
+            console.error(error);
+        }
     };
 
     return (
@@ -57,7 +63,7 @@ const Signup = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor='signuppwd'>Username:</label>
+                    <label htmlFor='signuppwd'>Password:</label>
                     <input
                         placeholder='********'
                         name='password'
