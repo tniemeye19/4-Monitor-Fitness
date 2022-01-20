@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
 import './signup-style.scss';
 import './signup-theme.scss';
 
@@ -12,7 +11,8 @@ import {
 } from '@chakra-ui/react';
 
 import Auth from '../../utils/auth';
-import { ADD_USER } from '../../utils/mutations';
+// import { CREATE_USER } from '../../utils/mutations';
+// import { useMutation } from '@apollo/client';
 
 const Signup = () => {
 
@@ -87,7 +87,7 @@ const Signup = () => {
                     )} */}
                 </div>
                 <div>
-                    <FormLabel htmlFor='signuppwd'>Username:</FormLabel>
+                    <FormLabel htmlFor='signuppwd'>Password:</FormLabel>
                     <Input
                         placeholder='********'
                         name='password'
