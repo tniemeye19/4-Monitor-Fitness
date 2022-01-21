@@ -14,6 +14,7 @@ import Login from '../Login/login';
 import Signup from '../Signup/signup';
 
 import Auth from '../../utils/auth';
+import exerciseSearch from '../../utils/wger';
 
 const LandingPage = () => {
 
@@ -72,6 +73,7 @@ const LandingPage = () => {
                         <div className='form-init-btns'>
                             <Button className='selectLoginBtn' colorScheme='green' disabled={disableLoginBtn} leftIcon={<BiLogInCircle />} onClick={onLoginClick} size='lg'>Login</Button>
                             <Button className='selectSignupBtn' colorScheme='yellow' disabled={disableSignupBtn} leftIcon={<GiArchiveRegister />} onClick={onSignupClick} size='lg'>Signup</Button>
+                            <Button colorScheme="orange" onClick={exerciseSearch}>Exercise</Button>
                         </div>
                         { showLoginForm ? (
                             <div className='form-init'>
