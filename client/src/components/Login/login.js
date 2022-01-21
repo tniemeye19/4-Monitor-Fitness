@@ -11,13 +11,13 @@ import {
 } from '@chakra-ui/react';
 
 import Auth from '../../utils/auth';
-// import { LOGIN } from '../../utils/mutations';
-// import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../../utils/mutations';
+import { useMutation } from '@apollo/client';
 
 const Login = () => {
     const [formState, setFormState] = useState({ email: '', password: '' });
     
-    // const [login, { error }] = useMutation(LOGIN);
+    const [login, { error }] = useMutation(LOGIN_USER);
 
     const accountForChange = (event) => {
         const { name, value } = event.target;
@@ -29,22 +29,25 @@ const Login = () => {
 
     const handleLoginSubmit = async (event) => {
 
-        // const form = event.currentTarget;
-        // if (form.checkValidity() === false) {
-        //     event.preventDefault();
-        //     event.stopPropagation();
-        // }
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
 
-        // event.preventDefault();
-        // try {
-        //     const editedInputResponse = await login({
-        //         variables: { email: formState.email, password: formState.password }
-        //     });
-        //     const token = editedInputResponse.data.login.token;
-        //     Auth.login(token);
-        // } catch (err) {
-        //     console.log(err);
-        // }
+        event.preventDefault();
+
+        console.log(formState);
+
+        try {
+            const {data} = await login({
+                variables: {...formState}
+            });
+
+            Auth.login(data.login.token);
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (
@@ -71,7 +74,7 @@ const Login = () => {
                     <FormLabel htmlFor='loginpwd'>Password:</FormLabel>
                     <Input
                         placeholder='********'
-                        name='passowrd'
+                        name='password'
                         type='password'
                         id='loginpwd'
                         onChange={accountForChange}
@@ -86,7 +89,8 @@ const Login = () => {
                     className='loginBtn'
                     colorScheme='green' 
                     size='md' 
-                    type='submit'>Submit
+                    type='submit'
+                    onClick={handleLoginSubmit}>Submit
                 </Button>
             </FormControl>
             </>

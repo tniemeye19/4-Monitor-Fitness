@@ -11,14 +11,14 @@ import {
 } from '@chakra-ui/react';
 
 import Auth from '../../utils/auth';
-// import { CREATE_USER } from '../../utils/mutations';
-// import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../../utils/mutations';
+import { useMutation } from '@apollo/client';
 
 const Signup = () => {
 
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
 
-    // const [createUser, { error, data }] = useMutation(CREATE_USER);
+    const [addUser, {error}] = useMutation(ADD_USER);
 
     const accountForChange = (event) => {
         const { name, value } = event.target;
@@ -30,23 +30,24 @@ const Signup = () => {
     };
 
     const handleSignupSubmit = async (event) => {
-        // event.preventDefault();
+        event.preventDefault();
 
-        // const form = event.currentTarget;
-        // if (form.checkValidity() === false) {
-        //     event.preventDefault();
-        //     event.stopPropagation();
-        // }
+        console.log(formState);
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
 
-        // try {
-        //     const { data } = await createUser({
-        //         variables: { ...formState },
-        //     });
+        try {
+            const { data } = await addUser({
+                variables: { ...formState },
+            });
 
-        //     Auth.login(data.createUser.token);
-        // } catch (err) {
-        //     console.log(err);
-        // }
+            Auth.login(data.addUser.token);
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return (
@@ -106,7 +107,8 @@ const Signup = () => {
                     className='signupBtn'
                     colorScheme='yellow' 
                     size='md' 
-                    type='submit'>Submit
+                    type='submit'
+                    onClick={handleSignupSubmit}>Submit
                 </Button>
             </FormControl>
             </>
