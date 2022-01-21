@@ -103,8 +103,9 @@ const Signup = () => {
                     )} */}
                 </div>
                 <Button 
-                    colorScheme='teal' 
-                    size='xs' 
+                    className='signupBtn'
+                    colorScheme='yellow' 
+                    size='md' 
                     type='submit'>Submit
                 </Button>
             </FormControl>

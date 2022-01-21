@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './settings-page-style.scss';
 import './settings-page-theme.scss';
-
-import Login from '../Login/login';
-import Signup from '../Signup/signup';
 
 import {
     Button,
@@ -25,24 +22,9 @@ const SettingsPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
 
-  const [showLoginForm, setShowLoginForm] = useState(false);
-  const [showSignupForm, setShowSignupForm] = useState(false);
-  const [disableLoginBtn, setDisableLoginBtn] = useState(false);
-  const [disableSignupBtn, setDisableSignupBtn] = useState(false);
-
-  const onLoginClick = () => {
-      setShowSignupForm(false);
-      setShowLoginForm(true);
-      setDisableLoginBtn(true);
-      setDisableSignupBtn(false);
-    }
-
-  const onSignupClick = () => {
-      setShowLoginForm(false);
-      setShowSignupForm(true);   
-      setDisableSignupBtn(true); 
-      setDisableLoginBtn(false);
-    }
+  const logout = () => {
+    Auth.logout();
+  }
 
   return (
     <>
@@ -58,7 +40,7 @@ const SettingsPage = () => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>4-Monitor-Fitness</DrawerHeader>
+          <DrawerHeader>4 Monitor Fitness</DrawerHeader>
 
           <DrawerBody>
           {Auth.loggedIn() ? 
@@ -68,20 +50,20 @@ const SettingsPage = () => {
               <h3>What other things do we want here after login?</h3>
             </div>
             ) :
-            ( <div>
-                <div className='formBtns'>
-                  <Button className='loginBtn' colorScheme='green' disabled={disableLoginBtn} onClick={onLoginClick} size='xs'>Login</Button>
-                  <Button className='signupBtn' colorScheme='yellow' disabled={disableSignupBtn} onClick={onSignupClick} size='xs'>Signup</Button>
-                </div>
-                { showLoginForm ? <Login /> : null }
-                { showSignupForm ? <Signup /> : null }
-              </div> )}
+            ( 
+            <div>
+              <h2>Please login or signup to have access to this conent.</h2>
+            </div>
+            )}
           </DrawerBody>
 
           <DrawerFooter>
-            <Button variant='outline' mr={3} onClick={onClose}>
-              Close
-            </Button>
+            {Auth.loggedIn() ? (
+              <Button colorScheme='red' variant='outline' mr={3} onClick={onClose && logout}>
+                Logout
+              </Button>
+            ) : null }
+
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

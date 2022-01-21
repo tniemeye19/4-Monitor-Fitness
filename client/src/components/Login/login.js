@@ -82,12 +82,13 @@ const Login = () => {
                         </FormErrorMessage>
                     )} */}
                 </div>
+                <Button 
+                    className='loginBtn'
+                    colorScheme='green' 
+                    size='md' 
+                    type='submit'>Submit
+                </Button>
             </FormControl>
-            <Button 
-                colorScheme='teal' 
-                size='xs' 
-                type='submit'>Submit
-            </Button>
             </>
         )}
 
