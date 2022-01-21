@@ -48,7 +48,7 @@ const Login = () => {
     };
 
     return (
-        <div>
+        <div className='login'>
         {Auth.loggedIn() ? null : (
             <>
             <FormControl onSubmit={handleLoginSubmit}>

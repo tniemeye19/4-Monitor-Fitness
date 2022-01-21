@@ -50,7 +50,7 @@ const Signup = () => {
     }
 
     return (
-        <div>
+        <div className='signup'>
         {Auth.loggedIn() ? null : (
             <>
             <FormControl onSubmit={handleSignupSubmit}>

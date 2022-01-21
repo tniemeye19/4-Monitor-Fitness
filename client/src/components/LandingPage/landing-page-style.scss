@@ -1,8 +1,32 @@
+.landing-page {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    position: relative;
+    color:  #023480;
+}
+
+.landing-page::after {
+    content: "";
+    opacity: 0.5;
+    background-image: url("../../assets/images/landingpagehome.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #023480;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: -1;
+}
+
 .settings-drawer-wrapper {
     position: sticky;
     display: flex;
     justify-content: right;
-    margin: 0.5rem;
+    padding: 0.5rem;
 }
 
 .get-started {
@@ -12,6 +36,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-shadow: 0 0 6px rgb(175, 175, 175);
+
+    .getStartedBtn {
+        color: whitesmoke;
+        background-color: #023480;
+        &:hover {
+            color: #023480;
+            background-color: rgb(175, 175, 175);
+            border: solid 2px #023480;
+        }
+    }
+
 }
 
 .form-init-btns {
@@ -26,8 +62,36 @@
 .form-init {
     display: flex;
     justify-content: center;
-    height: 500px;
-    width: 350px;
+    height: 400px;
+    width: 300px;
     margin-left: auto;
     margin-right: auto;
+    border: solid #023480 2px;
+    border-radius: 5px;
+    color: #023480;
+    background-color: rgb(175, 175, 175);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
+
+    ::placeholder {
+        color: #023480;
+    }
+}
+
+.welcome {
+    margin: 1rem;
+    text-align: center;
+    text-shadow: 0 0 4px rgb(175, 175, 175);
+}
+
+.monitors {
+    display: flex;
+    justify-content: center;
+
+    .displayIcon {
+        font-size: 4rem;
+        font-family: 'FontAwesome';
+        margin-left: 1rem;
+        margin-right: 1 rem;
+        text-shadow: 0 0 4px whitesmoke;
+    }
 }

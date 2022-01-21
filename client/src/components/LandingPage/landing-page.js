@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 import './landing-page-style.scss';
 import './landing-page-theme.scss';
 import { Button, Heading } from '@chakra-ui/react';
+import { BsDisplay } from 'react-icons/bs';
+import { BiLogInCircle } from 'react-icons/bi';
+import { GiArchiveRegister } from 'react-icons/gi';
+import { AiOutlineCode } from 'react-icons/ai';
 
 import SettingsPage from '../SettingsPage/settings-page';
 
@@ -12,6 +16,8 @@ import Signup from '../Signup/signup';
 import Auth from '../../utils/auth';
 
 const LandingPage = () => {
+
+    let title = '< Welcome to 4 Monitor Fitness />'
 
     const [showPageContent, setShowPageContent] = useState(false);
     const [showLoginForm, setShowLoginForm] = useState(false);
@@ -44,26 +50,38 @@ const LandingPage = () => {
             <>
                 <div className='settings-drawer-wrapper'>
                      <SettingsPage />
-                 </div>
-                 <div>
-                     <h2>WELCOME TO 4 MONITOR FITNESS</h2>
-                     <p>This is where your fitness journey begins</p>
-                 </div>
-                 <div>
-                 {Auth.loggedIn() ? (
+                </div>
+
+                <section className='welcome'>
+                    <Heading>{title}</Heading>
+                    <div className='monitors'>
+                        <BsDisplay className='displayIcon' />
+                        <BsDisplay className='displayIcon' />
+                        <BsDisplay className='displayIcon' />
+                        <BsDisplay className='displayIcon' />
+                    </div>
+                    <p>...login or signup below...</p>
+                </section>
+                <div>
+                {Auth.loggedIn() ? (
                     <section>
                         <h2>You are logged in!</h2>
                     </section>
                 ) : (
                     <section className='form-section'>
                         <div className='form-init-btns'>
-                            <Button className='selectLoginBtn' colorScheme='green' disabled={disableLoginBtn} onClick={onLoginClick} size='lg'>Login</Button>
-                            <Button className='selectSignupBtn' colorScheme='yellow' disabled={disableSignupBtn} onClick={onSignupClick} size='lg'>Signup</Button>
+                            <Button className='selectLoginBtn' colorScheme='green' disabled={disableLoginBtn} leftIcon={<BiLogInCircle />} onClick={onLoginClick} size='lg'>Login</Button>
+                            <Button className='selectSignupBtn' colorScheme='yellow' disabled={disableSignupBtn} leftIcon={<GiArchiveRegister />} onClick={onSignupClick} size='lg'>Signup</Button>
                         </div>
-                        <div className='form-init'>
-                            { showLoginForm ? <Login /> : null }
-                            { showSignupForm ? <Signup /> : null }
-                        </div>
+                        { showLoginForm ? (
+                            <div className='form-init'>
+                                <Login />
+                            </div>) : null }
+                        { showSignupForm ? (
+                            <div className='form-init'>
+                                <Signup />
+                            </div>) : null }
+
                     </section>
                 )}
                 </div>
@@ -71,11 +89,15 @@ const LandingPage = () => {
             ) : (
             <>
                 <section 
-                    animate={{}}
                     className='get-started'>
                     <Heading as='h1' size='4xl'>4 Monitor Fitness</Heading>
-                    <br />
-                    <Button className='getStartedBtn' colorScheme='orange' onClick={onGetStartedClick} size='lg'>Get Started</Button>
+                    <div className='monitors'>
+                        <BsDisplay className='displayIcon' />
+                        <BsDisplay className='displayIcon' />
+                        <BsDisplay className='displayIcon' />
+                        <BsDisplay className='displayIcon' />
+                    </div>
+                    <Button className='getStartedBtn' onClick={onGetStartedClick} size='lg'><AiOutlineCode size={32} /></Button>
                 </section>
             </>
             )}

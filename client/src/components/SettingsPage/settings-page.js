@@ -14,7 +14,7 @@ import {
     useDisclosure
 } from '@chakra-ui/react';
 
-import { HamburgerIcon } from '@chakra-ui/icons';
+import { GrFan } from 'react-icons/gr';
 
 import Auth from '../../utils/auth';
 
@@ -29,7 +29,7 @@ const SettingsPage = () => {
   return (
     <>
       <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
-        <HamburgerIcon color='black' />
+        <GrFan />
       </Button>
       <Drawer
         isOpen={isOpen}
