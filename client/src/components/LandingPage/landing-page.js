@@ -30,6 +30,7 @@ const LandingPage = () => {
                     </div>
                     <Button 
                         className='landing-btn' 
+                        colorScheme='green'
                         onClick={onGetStartedClick} 
                         size='lg'>
                             <AiOutlineCode size={32} />
