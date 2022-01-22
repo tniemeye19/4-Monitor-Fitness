@@ -1,23 +1,33 @@
-.get-started {
-    height: 100vh;
-    width: 100vw;
+.landing, .landing-content, .landing-monitors {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    text-shadow: 0 0 6px rgb(175, 175, 175);
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
+    text-align: center;
+    text-shadow: 2px 2px 6px whitesmoke;
+    
+}
 
-    .getStartedBtn {
-        color: whitesmoke;
-        background-color: #023480;
-        &:hover {
+.landing {
+    .landing-content {
+        .landing-header {
+            -webkit-text-stroke: 2px black;
             color: #023480;
-            background-color: rgb(175, 175, 175);
-            border: solid 2px #023480;
+        }
+        .landing-monitors {
+            flex-direction: row;
+            height: fit-content;
+            margin: 0.5rem 0;
+            .landing-displayIcon {
+                font-size: 4rem;
+                font-family: 'FontAwesome';
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+        }
+        .landing-btn {
+            width: fit-content;
+            align-self: center;
         }
     }
 }

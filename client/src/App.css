@@ -21,12 +21,11 @@
 
 .landing-page::after {
   content: "";
-  opacity: 0.5;
+  opacity: 0.4;
   background-image: url("./assets/images/landingpagehome.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #023480;
   top: 0;
   left: 0;
   right: 0;

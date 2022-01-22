@@ -19,21 +19,22 @@ const LandingPage = () => {
     return (
 
         <div className='landing-page'>
-            <section 
-                className='get-started'>
-                <Heading as='h1' size='4xl'>4 Monitor Fitness</Heading>
-                <div className='monitors'>
-                    <BsDisplay className='displayIcon' />
-                    <BsDisplay className='displayIcon' />
-                    <BsDisplay className='displayIcon' />
-                    <BsDisplay className='displayIcon' />
+            <section className='landing'>
+                <div className='landing-content'>
+                    <Heading className='landing-header' size='3xl'>4 Monitor Fitness</Heading>
+                    <div className='landing-monitors'>
+                        <BsDisplay className='landing-displayIcon' />
+                        <BsDisplay className='landing-displayIcon' />
+                        <BsDisplay className='landing-displayIcon' />
+                        <BsDisplay className='landing-displayIcon' />
+                    </div>
+                    <Button 
+                        className='landing-btn' 
+                        onClick={onGetStartedClick} 
+                        size='lg'>
+                            <AiOutlineCode size={32} />
+                    </Button>
                 </div>
-                <Button 
-                    className='getStartedBtn' 
-                    onClick={onGetStartedClick} 
-                    size='lg'>
-                        <AiOutlineCode size={32} />
-                </Button>
             </section>
         </div>
     )
