@@ -26,6 +26,10 @@ const SettingsPage = () => {
     Auth.logout();
   }
 
+  const onStatisticsClick = (e) => {
+    
+  }
+
   return (
     <>
       <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
@@ -46,7 +50,7 @@ const SettingsPage = () => {
           {Auth.loggedIn() ? 
             ( 
             <div>
-              <Button colorScheme='red' onClick={Auth.logout}>Logout</Button>
+              <Button colorScheme='teal' onClick={onStatisticsClick}>Statistics</Button>
               <h3>What other things do we want here after login?</h3>
             </div>
             ) :

@@ -1,0 +1,29 @@
+.welcome, .welcome-content, .monitors {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    text-shadow: 0 0 4px rgb(175, 175, 175);
+}
+
+.welcome {
+    .welcome-content {
+        .monitors {
+            flex-direction: row;
+            height: fit-content;
+            margin: 0.5rem 0;
+            .displayIcon {
+                font-size: 4rem;
+                font-family: 'FontAwesome';
+                margin-left: 1rem;
+                margin-right: 1rem;
+                text-shadow: 0 0 4px whitesmoke;
+            }
+        }
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+}
