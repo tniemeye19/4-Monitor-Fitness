@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from '@chakra-ui/react';
+import { Button, Box } from '@chakra-ui/react';
 
 const WorkoutPage = () => {
     const [equipment, setEquipment] = useState("7");
@@ -63,10 +63,22 @@ const WorkoutPage = () => {
                 {exercises && (
                     <div className="exercises">
                         {exercises.map((exercise, index) => (
-                            <div key={index}>
-                                <h2>{exercise.name}</h2>
-                                <h3>{exercise.description}</h3>
-                            </div>
+                            <Box 
+                            w="45%" 
+                            key={index} 
+                            borderWidth="1px" 
+                            borderRadius="lg"
+                            margin="3px"
+                            padding="1px">
+                                <div className="exercise">
+                                    <h2>{exercise.name}</h2>
+                                    <h3>{exercise.description}</h3>
+                                    <Button
+                                    className="add-btn"
+                                    colorScheme="red"
+                                    size="sm">Add Exercise</Button>
+                                </div>
+                            </Box>
                         ))}
                     </div>
                 )}
