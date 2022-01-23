@@ -1,6 +1,8 @@
 const path = require("path");
 const express = require("express");
 
+const routes = require('./routes');
+
 //import ApolloServer
 const {ApolloServer} = require("apollo-server-express");
 const {authMiddleware} = require("./utils/auth");
@@ -35,6 +37,7 @@ startServer();
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+
 
 //serve up static assets
 if(process.env.NODE_ENV === "production"){

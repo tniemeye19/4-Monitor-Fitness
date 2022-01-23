@@ -4,7 +4,9 @@ import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import LandingPage from './components/LandingPage/landing-page';
+import Welcome from './components/Welcome/welcome';
 import StatisticsPage from './components/StatisticsPage/statistics-page';
+import SettingsPage from './components/SettingsPage/settings-page';
 
 import './App.css';
 
@@ -32,9 +34,13 @@ function App() {
     <ApolloProvider client={client}>
       <BrowserRouter>
         <>
+          <div className='settings-drawer-wrapper'>
+            <SettingsPage />
+          </div>
           <Routes>
             <Route path='/' element={<LandingPage />} />
-            <Route path='/statistics' element={<StatisticsPage />} />
+            <Route path='/welcome' element={<Welcome />} />
+            <Route path='/dashboard/:idToken' element={<StatisticsPage />} />
           </Routes>
         </>
       </BrowserRouter>

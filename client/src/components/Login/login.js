@@ -7,6 +7,7 @@ import {
     FormControl,
     FormErrorMessage,
     FormLabel,
+    Heading,
     Input 
 } from '@chakra-ui/react';
 
@@ -54,6 +55,7 @@ const Login = () => {
         <div className='login'>
         {Auth.loggedIn() ? null : (
             <>
+            <Heading size='md'>LOGIN</Heading>
             <FormControl onSubmit={handleLoginSubmit}>
                 <div>
                     <FormLabel htmlFor='email'>Email Address:</FormLabel>
