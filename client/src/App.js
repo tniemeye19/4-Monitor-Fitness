@@ -1,7 +1,7 @@
 import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 
 import LandingPage from './components/LandingPage/landing-page';
 import Welcome from './components/Welcome/welcome';
@@ -30,6 +30,9 @@ const client = new ApolloClient({
 });
 
 function App() {
+
+  let  { params } = useParams();
+
   return (
     <ApolloProvider client={client}>
       <BrowserRouter>
@@ -38,9 +41,9 @@ function App() {
             <SettingsPage />
           </div>
           <Routes>
-            <Route path='/' element={<LandingPage />} />
+            <Route path='/statistics/:params' element={<StatisticsPage />} />
             <Route path='/welcome' element={<Welcome />} />
-            <Route path='/dashboard/:idToken' element={<StatisticsPage />} />
+            <Route path='/' element={<LandingPage />} />
           </Routes>
         </>
       </BrowserRouter>
