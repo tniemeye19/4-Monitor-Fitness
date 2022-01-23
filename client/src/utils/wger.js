@@ -1,4 +1,6 @@
-function exerciseSearch(){
+function exerciseSearch(equipment){
+    
+
     const api = "https://wger.de/api/v2/exercise/?equipment=7&language=2";
 
     fetch(api, {

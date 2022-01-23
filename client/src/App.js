@@ -7,6 +7,7 @@ import LandingPage from './components/LandingPage/landing-page';
 import Welcome from './components/Welcome/welcome';
 import StatisticsPage from './components/StatisticsPage/statistics-page';
 import SettingsPage from './components/SettingsPage/settings-page';
+import WorkoutPage from './components/WorkoutPage/workout-page';
 
 import './App.css';
 
@@ -41,6 +42,7 @@ function App() {
             <Route path='/' element={<LandingPage />} />
             <Route path='/welcome' element={<Welcome />} />
             <Route path='/dashboard/:idToken' element={<StatisticsPage />} />
+            <Route path="/workout" element={<WorkoutPage />} />
           </Routes>
         </>
       </BrowserRouter>
