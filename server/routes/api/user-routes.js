@@ -10,7 +10,10 @@ const { authMiddleware } = require('../../utils/auth');
 
 // put authMiddleware anywhere we need to send a token for verification of a user
 router.route('/welcome').post(createUser).put(authMiddleware);
+router.route('/welcome').post(login);
 
-router.route('/statistics/:params').get(getSingleUser).put(authMiddleware);
+router.route('/me').get(authMiddleware, getSingleUser);
+
+router.route('/statistics/:params').get(authMiddleware, getSingleUser);
 
 module.exports = router;

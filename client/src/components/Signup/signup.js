@@ -44,8 +44,8 @@ const Signup = () => {
             const { data } = await addUser({
                 variables: { ...formState },
             });
-
-            Auth.login(data.addUser.token);
+            console.log('Inside client auth data: ', data)
+            Auth.login(data.addUser.token, data.login.user.username);
         } catch (err) {
             console.log(err);
         }

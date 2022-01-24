@@ -1,5 +1,18 @@
 import {gql} from "@apollo/client";
 
+export const GET_ME = gql`
+    {
+        me {
+            _id
+            username
+            email
+            workouts {
+                workoutTitle
+                createdAt
+            }
+        }
+    }
+`;
 
 //Could add friends to this if we get here
 export const QUERY_USER = gql`

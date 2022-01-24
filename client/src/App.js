@@ -1,7 +1,7 @@
 import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import LandingPage from './components/LandingPage/landing-page';
 import Welcome from './components/Welcome/welcome';
@@ -31,8 +31,6 @@ const client = new ApolloClient({
 });
 
 function App() {
-
-  let  { params } = useParams();
 
   return (
     <ApolloProvider client={client}>
