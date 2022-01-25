@@ -45,7 +45,7 @@ const Login = () => {
                 variables: {...formState}
             });
             console.log('Inside client auth data: ', data)
-            Auth.login(data.login.token, data.login.user.username);
+            Auth.login(data.login.token);
         } catch (err) {
             console.log(err);
         }

@@ -8,18 +8,24 @@ import { QUERY_USER } from '../../utils/queries';
 import { getUser } from '../../utils/API';
 import Auth from '../../utils/auth';
 
-const StatisticsPage = ({ username }) => {
+const StatisticsPage = () => {
 
     const { params } = useParams();
     console.log('PARAMS: ', params);
 
     const authGetProfile = Auth.getProfile();
     console.log('Auth Get Profile: ', authGetProfile);
+    console.log(authGetProfile.data.username);
 
     const { loading, data } = useQuery(QUERY_USER, {
-        variables: { username }
+        variables: {
+            "username": `${authGetProfile.data.username}`
+        }
     });
+
     const [userData, setUserData] = useState(loading ? null : data?.user);
+
+    console.log('USER DATA: ', userData);
 
     const handleRender = async () => {
 
@@ -30,10 +36,12 @@ const StatisticsPage = ({ username }) => {
         }
 
         try {
-            const { data } = await getUser(token);
+            const response =  getUser(token);
 
-            console.log(data);
-            setUserData(userData);
+            const userDetail = await response.json();
+
+            console.log(userDetail);
+            // setUserData(userData);
         } catch (err) {
             console.error(err);
         }

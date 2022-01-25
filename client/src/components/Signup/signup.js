@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 
 import Auth from '../../utils/auth';
+import { createUser } from '../../utils/API';
 import { ADD_USER } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 
@@ -45,7 +46,7 @@ const Signup = () => {
                 variables: { ...formState },
             });
             console.log('Inside client auth data: ', data)
-            Auth.login(data.addUser.token, data.login.user.username);
+            Auth.login(data.addUser.token);
         } catch (err) {
             console.log(err);
         }
