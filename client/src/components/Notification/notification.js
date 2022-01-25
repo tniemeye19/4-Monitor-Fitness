@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {
   AlertDialog,
@@ -6,26 +6,33 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogContent,
-  AlertDialogCloseButton,
   AlertDialogOverlay,
   Button
 } from '@chakra-ui/react'
+
+import store from '../../utils/store';
+
+
 
 function Notification() {
 const [isOpen, setIsOpen] = React.useState(false)
   const onClose = () => setIsOpen(false)
   const cancelRef = React.useRef()
 
-  const onNotifyCLick =() => {
-      setIsOpen(true);
+  const unsubscribe = store.subscribe(() => {
+      console.log('State after dispatch: ', store.getState())
+      if (store.getState().signup_notification.value === true) {
+          setIsOpen(true);
+      }
+  })
+
+  const closeUserDrawer = () => {
+    onClose(true);
+    window.location.assign('/statistics');
   }
 
   return (
     <>
-      <Button colorScheme='red' onClick={onNotifyCLick}>
-        Delete Customer
-      </Button>
-
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
@@ -42,10 +49,10 @@ const [isOpen, setIsOpen] = React.useState(false)
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
+              <Button ref={cancelRef} onClick={closeUserDrawer}>
                 Cancel
               </Button>
-              <Button colorScheme='red' onClick={onClose} ml={3}>
+              <Button colorScheme='red' onClick={closeUserDrawer} ml={3}>
                 Delete
               </Button>
             </AlertDialogFooter>

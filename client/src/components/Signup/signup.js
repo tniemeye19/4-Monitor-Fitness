@@ -12,15 +12,19 @@ import {
 } from '@chakra-ui/react';
 
 import Auth from '../../utils/auth';
-import { createUser } from '../../utils/API';
 import { ADD_USER } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
+
+import { useDispatch } from 'react-redux';
+import { signup } from '../../utils/Reducers/notify-signup';
 
 const Signup = () => {
 
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
 
     const [addUser, {error}] = useMutation(ADD_USER);
+
+    const dispatch = useDispatch();
 
     const accountForChange = (event) => {
         const { name, value } = event.target;
@@ -34,19 +38,19 @@ const Signup = () => {
     const handleSignupSubmit = async (event) => {
         event.preventDefault();
 
-        // console.log(formState);
-        // const form = event.currentTarget;
-        // if (form.checkValidity() === false) {
-        //     event.preventDefault();
-        //     event.stopPropagation();
-        // }
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
 
         try {
             const { data } = await addUser({
                 variables: { ...formState },
             });
-            console.log('Inside client auth data: ', data)
+
             Auth.login(data.addUser.token);
+            dispatch(signup());
         } catch (err) {
             console.log(err);
         }

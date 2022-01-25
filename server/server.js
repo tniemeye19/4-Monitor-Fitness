@@ -1,8 +1,6 @@
 const path = require("path");
 const express = require("express");
 
-const routes = require('./routes');
-
 //import ApolloServer
 const {ApolloServer} = require("apollo-server-express");
 const {authMiddleware} = require("./utils/auth");

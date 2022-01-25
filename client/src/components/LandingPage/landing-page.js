@@ -1,8 +1,7 @@
 import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { signup } from '../../utils/Reducers/notify-signup';
 
 import './landing-page-style.scss';
 import './landing-page-theme.scss';
@@ -13,19 +12,10 @@ import { AiOutlineCode } from 'react-icons/ai';
 const LandingPage = () => {
 
     const navigate = useNavigate();
-    const setSignedUp = useSelector((state) => state.signup_notification.value);
-    const dispatch = useDispatch();
 
     const onGetStartedClick = (e) => {
         e.preventDefault();
         navigate('/welcome');
-    }
-
-    const showSignupNotification = (e) => {
-        e.preventDefault();
-        let value = dispatch(signup());
-        console.log(value);
-
     }
 
     return (
