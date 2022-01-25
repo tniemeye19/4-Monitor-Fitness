@@ -31,7 +31,6 @@ const WorkoutPage = () => {
             }
         })
     }
-
     
 
     return (

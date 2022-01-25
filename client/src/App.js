@@ -8,6 +8,7 @@ import Welcome from './components/Welcome/welcome';
 import StatisticsPage from './components/StatisticsPage/statistics-page';
 import SettingsPage from './components/SettingsPage/settings-page';
 import WorkoutPage from './components/WorkoutPage/workout-page';
+import UserWorkoutPage from './components/UserWorkoutsPage/user-workout-page';
 import Auth from "./utils/auth";
 
 import './App.css';
@@ -43,6 +44,7 @@ function App() {
             <Route path='/statistics' element={<StatisticsPage />} />
             <Route path='/welcome' element={<Welcome />} />
             <Route path="/workout" element={<WorkoutPage />} />
+            <Route path="/userworkouts" element={<UserWorkoutPage />} />
             <Route path='/' element={<LandingPage />} />
           </Routes>
         </>

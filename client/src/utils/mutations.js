@@ -23,3 +23,17 @@ export const ADD_USER = gql`
         }
     }
 `;
+
+export const ADD_WORKOUT = gql`
+    mutation addWorkout($workoutTitle: String!){
+        addWorkout(workoutTitle: $workoutTitle){
+            _id
+            username
+            workouts{
+                _id
+                workoutTitle
+                createdAt
+            }
+        }
+    }
+`;

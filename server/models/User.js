@@ -1,5 +1,6 @@
 const {model, Schema} = require("mongoose");
 const bcrypt = require("bcrypt");
+const workoutSchema = require("./Workout");
 
 const userSchema = new Schema(
     {
@@ -20,12 +21,7 @@ const userSchema = new Schema(
             required: true,
             minlength: 5
         },
-        workouts: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "Workout"
-            }
-        ]
+        workouts: [workoutSchema]
     }
 );
 

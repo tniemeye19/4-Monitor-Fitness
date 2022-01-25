@@ -26,10 +26,12 @@ const resolvers = {
         },
         workouts: async (parent, {username}) => {
             const params = username ? {username} : {};
-            return Workout.find(params).sort({createdAt: -1});
+            return User.find(params)
+                .populate("workouts")
+                .sort({createdAt: -1});
         },
         workout: async (parent, {_id}) => {
-            return Workout.findOne({_id});
+            return User.findOne({_id});
         }
     },
     Mutation: {
@@ -56,16 +58,18 @@ const resolvers = {
         },
         addWorkout: async (parent, args, context) => {
             if(context.user){
-                const workout = await Workout.create({...args, username: context.user.username});
-
-                await User.findByIdAndUpdate(
+                const updatedUser = await User.findByIdAndUpdate(
                     {_id: context.user._id},
-                    {$push: {workouts: workout._id}},
+                    {$push: {workouts: args}},
                     {new: true}
                 );
 
-                return workout;
+                return updatedUser;
             }
+
+            // console.log(parent);
+            // console.log(args);
+            console.log(context.user);
 
             throw new AuthenticationError("You need to be logged in.")
         },
