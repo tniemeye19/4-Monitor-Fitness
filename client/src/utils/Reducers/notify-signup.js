@@ -9,12 +9,9 @@ export const notifySignup = createSlice({
         signup: (state) => {
             state.value = true;
         },
-        didSignup: (state, action) => {
-            state.value += action.payload
-        },
     },
 });
 
-export const { signup, didSignup } = notifySignup.actions;
+export const { signup } = notifySignup.actions;
 
 export default notifySignup.reducer;

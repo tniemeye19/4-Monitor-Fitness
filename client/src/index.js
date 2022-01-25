@@ -8,7 +8,6 @@ import store from './utils/store';
 import { Provider } from 'react-redux';
 import { ChakraProvider } from '@chakra-ui/react';
 
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

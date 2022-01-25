@@ -44,7 +44,7 @@ const Login = () => {
             const {data} = await login({
                 variables: {...formState}
             });
-            console.log('Inside client auth data: ', data)
+
             Auth.login(data.login.token);
         } catch (err) {
             console.log(err);

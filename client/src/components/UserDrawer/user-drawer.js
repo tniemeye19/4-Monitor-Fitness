@@ -1,6 +1,6 @@
 import React from 'react';
-import './settings-page-style.scss';
-import './settings-page-theme.scss';
+import './user-drawer-style.scss';
+import './user-drawer-theme.scss';
 
 import {
     Button,
@@ -17,17 +17,21 @@ import {
 import { GrFan } from 'react-icons/gr';
 
 import Auth from '../../utils/auth';
+import { useNavigate } from 'react-router-dom';
 
-const SettingsPage = () => {
+const UserDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
+  const navigate = useNavigate();
 
   const logout = () => {
+    onClose();
     Auth.logout();
   }
 
-  const onStatisticsClick = (e) => {
-    
+  const onWorkoutsBtnClick = () => {
+    navigate('/workout')
+    onClose();
   }
 
   return (
@@ -50,20 +54,20 @@ const SettingsPage = () => {
           {Auth.loggedIn() ? 
             ( 
             <div>
-              <Button colorScheme='teal' onClick={onStatisticsClick}>Statistics</Button>
+              <Button colorScheme='teal' onClick={onWorkoutsBtnClick}>My Workouts</Button>
               <h3>What other things do we want here after login?</h3>
             </div>
             ) :
             ( 
             <div>
-              <h2>Please login or signup to have access to this conent.</h2>
+              <h2>Your fitness journey is only a few clicks away! Please login to see what you're missing out on!</h2>
             </div>
             )}
           </DrawerBody>
 
           <DrawerFooter>
             {Auth.loggedIn() ? (
-              <Button colorScheme='red' variant='outline' mr={3} onClick={onClose && logout}>
+              <Button colorScheme='red' variant='outline' mr={3} onClick={logout}>
                 Logout
               </Button>
             ) : null }
@@ -75,4 +79,4 @@ const SettingsPage = () => {
   )
 }
 
-export default SettingsPage;
+export default UserDrawer;

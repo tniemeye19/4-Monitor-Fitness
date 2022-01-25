@@ -1,15 +1,15 @@
 import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import LandingPage from './components/LandingPage/landing-page';
 import Welcome from './components/Welcome/welcome';
-import StatisticsPage from './components/StatisticsPage/statistics-page';
-import SettingsPage from './components/SettingsPage/settings-page';
+import UserDrawer from './components/UserDrawer/user-drawer';
 import WorkoutPage from './components/WorkoutPage/workout-page';
 import UserWorkoutPage from './components/UserWorkoutsPage/user-workout-page';
 import Auth from "./utils/auth";
+import Notification from './components/Notification/notification';
 
 import './App.css';
 
@@ -38,10 +38,12 @@ function App() {
       <BrowserRouter>
         <>
           <div className='settings-drawer-wrapper'>
-            <SettingsPage />
+            <UserDrawer />
+          </div>
+          <div id='alert-this'>
+            <Notification />
           </div>
           <Routes>
-            <Route path='/statistics' element={<StatisticsPage />} />
             <Route path='/welcome' element={<Welcome />} />
             <Route path="/workout" element={<WorkoutPage />} />
             <Route path="/userworkouts" element={<UserWorkoutPage />} />
