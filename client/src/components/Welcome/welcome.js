@@ -15,7 +15,7 @@ const Welcome = () => {
 
     const onStatsBtnClick = (e) => {
         e.preventDefault();
-        navigate('/statistics/:id');
+        navigate('/statistics');
     }
 
     return (

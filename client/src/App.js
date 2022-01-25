@@ -8,6 +8,7 @@ import Welcome from './components/Welcome/welcome';
 import StatisticsPage from './components/StatisticsPage/statistics-page';
 import SettingsPage from './components/SettingsPage/settings-page';
 import WorkoutPage from './components/WorkoutPage/workout-page';
+import Auth from "./utils/auth";
 
 import './App.css';
 
@@ -31,9 +32,6 @@ const client = new ApolloClient({
 });
 
 function App() {
-
-
-
   return (
     <ApolloProvider client={client}>
       <BrowserRouter>

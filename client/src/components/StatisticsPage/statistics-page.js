@@ -10,60 +10,56 @@ import Auth from '../../utils/auth';
 
 const StatisticsPage = () => {
 
-    const { params } = useParams();
-    console.log('PARAMS: ', params);
+
 
     const authGetProfile = Auth.getProfile();
-    console.log('Auth Get Profile: ', authGetProfile);
-    console.log(authGetProfile.data.username);
+    const username = authGetProfile.data.username;
 
-    const { loading, data } = useQuery(QUERY_USER, {
-        variables: {
-            "username": `${authGetProfile.data.username}`
-        }
-    });
+    // const [userLoginData, setUserLoginData] = useState({username: ""});
 
-    const [userData, setUserData] = useState(loading ? null : data?.user);
+    const { loading, error, data } = useQuery(QUERY_USER, {
+        variables: {username}
+    })
 
-    console.log('USER DATA: ', userData);
+    console.log(data);
+    // const [userData, setUserData] = useState(loading ? null : data?.user);
 
-    const handleRender = async () => {
+    // console.log('USER DATA: ', data);
 
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
+    // const handleRender = async () => {
+    //     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-        if (!token) {
-            return false;
-        }
+    //     if (!token) {
+    //         return false;
+    //     }
 
-        try {
-            const response =  getUser(token);
+    //     try {
+    //         // const response =  getUser(token);
 
-            const userDetail = await response.json();
+            
+    //         // setUserData(userData);
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
 
-            console.log(userDetail);
-            // setUserData(userData);
-        } catch (err) {
-            console.error(err);
-        }
+    //     // try {
 
-        // try {
+    //     //     const response = await getUser(token);
 
-        //     const response = await getUser(token);
+    //     //     if (!response.ok) {
+    //     //         throw new Error('Something went wrong in stats page');
+    //     //     }
 
-        //     if (!response.ok) {
-        //         throw new Error('Something went wrong in stats page');
-        //     }
+    //     //     const user = await response.json();
 
-        //     const user = await response.json();
+    //     //     setUserData(user)
 
-        //     setUserData(user)
+    //     // } catch (e) {
+    //     //     console.log('Error in Stats catch: ', e);
+    //     // }
+    // }
 
-        // } catch (e) {
-        //     console.log('Error in Stats catch: ', e);
-        // }
-    }
-
-    handleRender();
+    // handleRender();
         
 
 
