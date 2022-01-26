@@ -1,4 +1,5 @@
 import React from 'react';
+import './notification-style.scss';
 
 import {
   AlertDialog,
@@ -7,14 +8,14 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
-  Button
+  Button,
+  Heading
 } from '@chakra-ui/react'
+import { GiWeightLiftingUp } from 'react-icons/gi';
 
 import store from '../../utils/store';
 
-
-
-function Notification() {
+function SignupNotification() {
 const [isOpen, setIsOpen] = React.useState(false)
   const onClose = () => setIsOpen(false)
   const cancelRef = React.useRef()
@@ -38,22 +39,23 @@ const [isOpen, setIsOpen] = React.useState(false)
         leastDestructiveRef={cancelRef}
         onClose={onClose}
       >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
-              Delete Customer
+        <AlertDialogOverlay className="signup-alert-dialog-container">
+          <AlertDialogContent className='signup-alert-dialog-content'>
+            <AlertDialogHeader className='signup-alert-dialog-header' fontSize='lg' fontWeight='bold'>
+              <Heading size='xl'>Congratulations</Heading>
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Are you sure? You can't undo this action afterwards.
+              <p>Thank you for signing up with 4 Monitor Fitness.</p>
+              <br />
+              <p>Taking the first step towards developing a healthier lifestyle is never easy, and you just did it!</p>
+              <br />
+              <p>Now let's go create some PR's!</p>
             </AlertDialogBody>
 
-            <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={closeUserDrawer}>
-                Cancel
-              </Button>
-              <Button colorScheme='red' onClick={closeUserDrawer} ml={3}>
-                Delete
+            <AlertDialogFooter className="signup-alert-dialog-footer">
+              <Button className="signup-alert-dialog-button" colorScheme='green' onClick={closeUserDrawer} ml={3}>
+                <GiWeightLiftingUp> Get Started!</GiWeightLiftingUp>
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
@@ -63,4 +65,4 @@ const [isOpen, setIsOpen] = React.useState(false)
   )
 }
 
-export default Notification;
+export default SignupNotification;

@@ -3,6 +3,6 @@ import notifySignup from './Reducers/notify-signup';
 
 export default configureStore({
     reducer: {
-        signup_notification: notifySignup
+        signup_notification: notifySignup,
     },
 })

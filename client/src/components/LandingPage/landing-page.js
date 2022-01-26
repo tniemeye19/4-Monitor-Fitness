@@ -2,7 +2,6 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-
 import './landing-page-style.scss';
 import './landing-page-theme.scss';
 import { Button, Heading } from '@chakra-ui/react';
