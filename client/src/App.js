@@ -8,8 +8,7 @@ import Welcome from './components/Welcome/welcome';
 import UserDrawer from './components/UserDrawer/user-drawer';
 import WorkoutPage from './components/WorkoutPage/workout-page';
 import UserWorkoutPage from './components/UserWorkoutsPage/user-workout-page';
-import Auth from "./utils/auth";
-import Notification from './components/Notification/notification';
+import SignupNotification from './components/Notification/signup-notification';
 
 import './App.css';
 
@@ -41,7 +40,7 @@ function App() {
             <UserDrawer />
           </div>
           <div id='alert-this'>
-            <Notification />
+            <SignupNotification />
           </div>
           <Routes>
             <Route path='/welcome' element={<Welcome />} />

@@ -14,7 +14,7 @@ import {
     useDisclosure
 } from '@chakra-ui/react';
 
-import { GrFan } from 'react-icons/gr';
+import { ImMenu } from 'react-icons/im';
 
 import Auth from '../../utils/auth';
 import { useNavigate } from 'react-router-dom';
@@ -24,8 +24,10 @@ const UserDrawer = () => {
   const btnRef = React.useRef()
   const navigate = useNavigate();
 
-  const logout = () => {
+  const logout = (e) => {
+    
     onClose();
+    e.preventDefault();
     Auth.logout();
   }
 
@@ -36,8 +38,8 @@ const UserDrawer = () => {
 
   return (
     <>
-      <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
-        <GrFan />
+      <Button ref={btnRef} colorScheme="green" className="drawer-button" onClick={onOpen}>
+        <ImMenu />
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -60,7 +62,10 @@ const UserDrawer = () => {
             ) :
             ( 
             <div>
-              <h2>Your fitness journey is only a few clicks away! Please login to see what you're missing out on!</h2>
+              <h2>Your fitness journey is only a few clicks away!
+                  <br />
+                  Please login to find out what you're missing!
+              </h2>
             </div>
             )}
           </DrawerBody>
