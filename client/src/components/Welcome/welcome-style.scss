@@ -29,5 +29,24 @@
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
         }
+        .auth-welcome-content {
+            background-color: antiquewhite;
+            height: fit-content;
+            width: 400px;
+            margin: 0 auto;
+            padding: 1rem;
+            border: solid 3px #023480;
+            border-radius: 5px;
+
+            .welcome-route-btns {
+                Button {
+                    margin: 1rem;
+                    &:not(active) {
+                        box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.5)
+                    }
+                }
+            }
+        }
+
     }
 }
