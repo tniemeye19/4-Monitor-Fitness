@@ -48,23 +48,28 @@ const UsersAnalyticsPage = () => {
 
         for (let i = 0; i < totalUsers; i++) {
             let username = allUsersData.data.users[i].username;
-            let userWorkoutsLength = allUsersData.data.users[i].workouts.length;
             let userSingleWorkout = allUsersData.data.users[i].workouts;
+
+            console.log(userSingleWorkout);
+            let userWorkoutsLength = allUsersData.data.users[i].workouts.length;
+            
             console.log(userWorkoutsLength)
             labels.push(username);
             userWorkouts.push(userWorkoutsLength);
             for (let j = 0; j < userWorkoutsLength; j++) {
-                let userExercisesLength = userSingleWorkout[j].exercises.length;
+                let userExercisesLength = allUsersData.data.users[i].workouts[j].exercises.length;
                 console.log(userExercisesLength)
                 if (userExercisesLength === 0) {
-                    let zero = "zerp";
-                    userExercises.push(zero);
-                    console.log(userExercises);
+                    // let zero = "zero";
+                    // userExercises.push(zero);
+                    // console.log(userExercises);
+                    console.log(userSingleWorkout[j].workoutTitle + " has no exercises.");
                 } else {
-                    console.log(userExercisesLength);
-                    console.log(j);
-                    userExercises.push(userExercisesLength);
-                    console.log(userExercises);
+                    // console.log(userExercisesLength);
+                    // console.log(j);
+                    // userExercises.push(userExercisesLength);
+                    // console.log(userExercises);
+                    console.log(userSingleWorkout[j].workoutTitle + " has " + userExercisesLength + " exercises.")
                 }
 
             }

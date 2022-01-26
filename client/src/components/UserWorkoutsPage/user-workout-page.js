@@ -36,6 +36,8 @@ const UserWorkoutPage = () => {
         }
     }, [data])
 
+   
+
     const handleWorkoutSubmit = async (event) => {
         event.preventDefault();
 

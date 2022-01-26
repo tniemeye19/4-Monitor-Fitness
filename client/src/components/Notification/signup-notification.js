@@ -12,10 +12,13 @@ import {
   Heading
 } from '@chakra-ui/react'
 import { GiWeightLiftingUp } from 'react-icons/gi';
+import { useNavigate } from 'react-router-dom';
 
 import store from '../../utils/store';
 
 function SignupNotification() {
+  const navigate = useNavigate();
+
 const [isOpen, setIsOpen] = React.useState(false)
   const onClose = () => setIsOpen(false)
   const cancelRef = React.useRef()
@@ -29,7 +32,7 @@ const [isOpen, setIsOpen] = React.useState(false)
 
   const closeUserDrawer = () => {
     onClose(true);
-    window.location.assign('/statistics');
+    navigate('/analytics');
   }
 
   return (

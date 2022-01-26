@@ -32,7 +32,17 @@ const UserDrawer = () => {
   }
 
   const onWorkoutsBtnClick = () => {
-    navigate('/workout')
+    navigate('/userworkouts')
+    onClose();
+  }
+
+  const onAnalyticsBtnClick = () => {
+    navigate('/analytics')
+    onClose();
+  }
+
+  const onUserAnalyticsBtnClick = () => {
+    navigate('/analytics/user')
     onClose();
   }
 
@@ -57,7 +67,8 @@ const UserDrawer = () => {
             ( 
             <div>
               <Button colorScheme='teal' onClick={onWorkoutsBtnClick}>My Workouts</Button>
-              <h3>What other things do we want here after login?</h3>
+              <Button colorScheme='green' onClick={onAnalyticsBtnClick}>Analytics</Button>
+              <Button colorScheme='yellow' onClick={onUserAnalyticsBtnClick}>My Analytics</Button>
             </div>
             ) :
             ( 

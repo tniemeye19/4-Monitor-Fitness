@@ -49,7 +49,9 @@ const Signup = () => {
                 variables: { ...formState },
             });
 
-            Auth.login(data.addUser.token);
+            const value = true;
+            
+            Auth.login(data.addUser.token, value);
             dispatch(signup());
         } catch (err) {
             console.log(err);
