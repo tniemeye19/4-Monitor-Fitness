@@ -62,8 +62,6 @@ const UsersAnalyticsPage = () => {
                     userExercises.push(userExercisesLength);
                 }
             }
-
-            
         }
 
     }   catch (err) {

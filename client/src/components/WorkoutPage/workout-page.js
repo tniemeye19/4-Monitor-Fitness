@@ -110,34 +110,6 @@ const WorkoutPage = () => {
     return (
         <div className="workout-page">
             <Heading>{workoutTitle}</Heading>
-            <div className="my-workout">
-                <div className="my-exercises">
-                    {userExercises && userExercises.map((exercise, index) => (
-                        <Box
-                        w="40%" 
-                        key={index} 
-                        borderWidth="1px" 
-                        borderRadius="lg"
-                        margin="3px"
-                        padding="1px"
-                        alignItems="baseline"
-                        backgroundColor="antiquewhite"
-                        padding="1rem"
-                        border="solid 3px #023480"
-                        border-radius="5px">
-                            <div className="my-exercise">
-                                <h2>{exercise.exerciseTitle}</h2>
-                                <h3>{exercise.exerciseDescription}</h3>
-                                <Button
-                                colorScheme="red"
-                                size="sm"
-                                id={exercise._id}
-                                onClick={onRemoveBtnClick}>Remove Exercise</Button>
-                            </div>
-                        </Box>
-                    ))}
-                </div>
-            </div>
             <div className="workout-search">
                 <div className="exercise-input">
                 <label htmlFor="equipment">Select your equipment:</label>
@@ -162,11 +134,11 @@ const WorkoutPage = () => {
                     Search
                 </Button>
             </div>
-            <div className="exerciseList">
-                {exercises && (
-                    <div className="exercises">
-                        {exercises.map((exercise, index) => (
-                            <Box 
+            <div className="both-ex-wo">
+                <div className="my-workout">
+                    <div className="my-exercises">
+                        {userExercises && userExercises.map((exercise, index) => (
+                            <Box
                             w="40%" 
                             key={index} 
                             borderWidth="1px" 
@@ -178,19 +150,49 @@ const WorkoutPage = () => {
                             padding="1rem"
                             border="solid 3px #023480"
                             border-radius="5px">
-                                <div className="exercise">
-                                    <h2>{exercise.name}</h2>
-                                    <h3>{exercise.description}</h3>
+                                <div className="my-exercise">
+                                    <h2>{exercise.exerciseTitle}</h2>
+                                    <h3>{exercise.exerciseDescription}</h3>
                                     <Button
-                                    className="add-btn"
                                     colorScheme="red"
                                     size="sm"
-                                    onClick={handleAddExercise}>Add Exercise</Button>
+                                    id={exercise._id}
+                                    onClick={onRemoveBtnClick}>Remove Exercise</Button>
                                 </div>
                             </Box>
                         ))}
                     </div>
-                )}
+                </div>
+                <div className="exerciseList">
+                    {exercises && (
+                        <div className="exercises">
+                            {exercises.map((exercise, index) => (
+                                <Box 
+                                w="40%" 
+                                key={index} 
+                                borderWidth="1px" 
+                                borderRadius="lg"
+                                margin="3px"
+                                padding="1px"
+                                alignItems="baseline"
+                                backgroundColor="antiquewhite"
+                                padding="1rem"
+                                border="solid 3px #023480"
+                                border-radius="5px">
+                                    <div className="exercise">
+                                        <h2>{exercise.name}</h2>
+                                        <h3>{exercise.description}</h3>
+                                        <Button
+                                        className="add-btn"
+                                        colorScheme="red"
+                                        size="sm"
+                                        onClick={handleAddExercise}>Add Exercise</Button>
+                                    </div>
+                                </Box>
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
