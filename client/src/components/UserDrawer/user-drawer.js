@@ -10,6 +10,7 @@ import {
     DrawerOverlay,
     DrawerContent,
     DrawerCloseButton,
+    Heading,
     useDisclosure
 } from '@chakra-ui/react';
 
@@ -22,6 +23,8 @@ const UserDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
   const navigate = useNavigate();
+
+  let username = Auth.getProfile().data.username;
 
   const logout = (e) => {
     
@@ -47,8 +50,8 @@ const UserDrawer = () => {
 
   return (
     <>
-      <Button ref={btnRef} colorScheme="green" className="drawer-button" onClick={onOpen}>
-        <ImMenu />
+      <Button ref={btnRef} colorScheme="green" className="drawer-btn" onClick={onOpen}>
+        <ImMenu className="close-btn-icon" /> 4 Monitor Fitness 
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -57,23 +60,27 @@ const UserDrawer = () => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent className="drawer-content">
           <DrawerCloseButton />
-          <DrawerHeader>4 Monitor Fitness</DrawerHeader>
+          <DrawerHeader>
+            <Heading color="#023480" fontSize="3xl" fontWeight="bold">4 Monitor Fitness</Heading>
+            <p>Logged in as {username}</p>
+          </DrawerHeader>
 
           <DrawerBody>
           {Auth.loggedIn() ? 
             ( 
             <div>
-              <Button colorScheme='teal' onClick={onWorkoutsBtnClick}>My Workouts</Button>
-              <Button colorScheme='green' onClick={onAnalyticsBtnClick}>Analytics</Button>
-              <Button colorScheme='yellow' onClick={onUserAnalyticsBtnClick}>My Analytics</Button>
+              <Button className="drawer-btn nD-btn" colorScheme='teal' onClick={onWorkoutsBtnClick} size='lg'>My Workouts</Button>
+              <Button className="drawer-btn nD-btn" colorScheme='green' onClick={onAnalyticsBtnClick} size='lg'>Analytics</Button>
+              <Button className="drawer-btn nD-btn" colorScheme='yellow' onClick={onUserAnalyticsBtnClick} size='lg'>My Analytics</Button>
             </div>
             ) :
             ( 
             <div>
-              <h2>Your fitness journey is only a few clicks away!
-                  <br />
+              <h2>
+                  Your fitness journey is only a few clicks away!
+                <br />
                   Please login to find out what you're missing!
               </h2>
             </div>

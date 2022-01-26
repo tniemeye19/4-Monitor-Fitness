@@ -45,12 +45,14 @@ const Welcome = () => {
                     </>
                 ) : (
                     <>
-                    <Heading size='xl'>Welcome back!</Heading>
-                    <Heading size='xl'>Where do you want to go?</Heading>
-                    <div className='welcome-route-btns'>
-                        <Button colorScheme='teal' onClick={onWorkoutsBtnClick}>My Workouts</Button>
-                        <Button colorScheme='green' onClick={onAnalyticsBtnClick}>Analytics</Button>
-                        <Button colorScheme='yellow' onClick={onUserAnalyticsBtnClick}>My Analytics</Button>
+                    <div className="auth-welcome-content">
+                        <Heading size='xl'>Welcome back!</Heading>
+                        <Heading size='xl'>Where to now?</Heading>
+                        <div className='welcome-route-btns'>
+                            <Button colorScheme='teal' onClick={onWorkoutsBtnClick} size="lg">My Workouts</Button>
+                            <Button colorScheme='green' onClick={onAnalyticsBtnClick} size="lg">Analytics</Button>
+                            <Button colorScheme='yellow' onClick={onUserAnalyticsBtnClick} size="lg">My Analytics</Button>
+                        </div>
                     </div>
                     </>
                 )}
