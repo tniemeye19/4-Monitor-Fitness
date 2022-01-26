@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, FormControl, FormLabel, Input, Box} from '@chakra-ui/react';
 
-import { ADD_WORKOUT } from "../../utils/mutations";
+import { ADD_WORKOUT, DELETE_WORKOUT } from "../../utils/mutations";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_ME, QUERY_USER, QUERY_WORKOUTS } from "../../utils/queries";
 import Auth from "../../utils/auth";
@@ -25,9 +25,10 @@ const UserWorkoutPage = () => {
     });
 
     const [addWorkout, {error}] = useMutation(ADD_WORKOUT);
+
+    const [deleteWorkout, {error2}] = useMutation(DELETE_WORKOUT);
         
     const [workoutTitle, setWorkoutTitle] = useState("");
-
 
     useEffect(() => {
         if(data){
@@ -47,15 +48,11 @@ const UserWorkoutPage = () => {
 
 
         try{
-
-            console.log(workoutTitle);
             const {data} = await addWorkout({
-                variables: {workoutTitle}
+                variables: {workoutTitle, username}
             });
 
-            console.log(data);
-            console.log(data.addWorkout.workouts);
-            setWorkouts(data.addWorkout.workouts);
+            window.location.assign("/userworkouts");
         }
         catch(err){
             console.error(err);
@@ -66,6 +63,19 @@ const UserWorkoutPage = () => {
         navigate(`/userworkouts/${event.target.id}`);
     }
     
+    const onDeleteBtnClick = async (event) => {
+        const workoutId = event.target.id
+        try{
+            const {data} = await deleteWorkout({
+                variables: {workoutId: workoutId}
+            })
+
+            window.location.assign("/userworkouts");
+        }
+        catch(err){
+            console.error(err);
+        }
+    }
 
     return (
         <div>
@@ -99,7 +109,12 @@ const UserWorkoutPage = () => {
                                     <h2>{workout.workoutTitle}</h2>
                                     <Button
                                     onClick={onEditBtnClick}
-                                    id={workout._id}>Edit Workout</Button>
+                                    id={workout._id}
+                                    colorScheme="green">Edit Workout</Button>
+                                    <Button
+                                    colorScheme="red"
+                                    id={workout._id}
+                                    onClick={onDeleteBtnClick}>Delete Workout</Button>
                                 </div>
                             </Box>
                         ))}

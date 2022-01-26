@@ -1,4 +1,4 @@
-const {Schema} = require("mongoose");
+const {Schema, model} = require("mongoose");
 const exerciseSchema = require("./Exercise");
 const dateFormat = require("../utils/dateFormat");
 
@@ -28,4 +28,6 @@ const workoutSchema = new Schema(
     }
 );
 
-module.exports = workoutSchema;
+const Workout = model("Workout", workoutSchema);
+
+module.exports = Workout;

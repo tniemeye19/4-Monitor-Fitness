@@ -38,6 +38,7 @@ export const QUERY_WORKOUTS = gql`
             createdAt
             username
             exercises{
+                _id
                 exerciseTitle
                 exerciseDescription
                 createdAt
@@ -54,6 +55,7 @@ export const QUERY_WORKOUT = gql`
             createdAt
             username
             exercises{
+                _id
                 exerciseTitle
                 exerciseDescription
                 createdAt

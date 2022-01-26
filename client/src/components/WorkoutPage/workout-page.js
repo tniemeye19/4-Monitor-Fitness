@@ -1,28 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Box } from '@chakra-ui/react';
-import { useMutation } from "@apollo/client";
-import { ADD_EXERCISE } from "../../utils/mutations";
+import { useMutation, useQuery } from "@apollo/client";
+import { ADD_EXERCISE, REMOVE_EXERCISE } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+import { QUERY_WORKOUT } from "../../utils/queries";
 
 const WorkoutPage = () => {
+    const url = window.location;
+    const workoutId = url.toString().split("/")[4];
+    
     const [equipment, setEquipment] = useState("7");
 
     const [exercises, setExercises] = useState(null);
 
+    const [workoutTitle, setWorkoutTitle] = useState(null);
+
+    const [userExercises, setUserExercises] = useState(null);
+
     const [addExercise, {error}] = useMutation(ADD_EXERCISE);
 
-    const url = window.location;
+    const [removeExercise, {error2}] = useMutation(REMOVE_EXERCISE);
 
-    const workoutId = url.toString().split("/")[4];
+    const {loading, data} = useQuery(QUERY_WORKOUT, {
+        variables: {
+            id: workoutId
+        }
+    });
+
+    useEffect(() => {
+        if(data){
+            setUserExercises(data.workout.exercises);
+            setWorkoutTitle(data.workout.workoutTitle);
+        }
+    })
 
     const handleEquipmentChange = (e) => {
         setEquipment(e.target.value);
-        console.log(equipment);
     }
 
     const exerciseSearch = () => {
-        console.log(equipment);
-        
         const api = `https://wger.de/api/v2/exercise/?equipment=${equipment}&language=2`;
 
         fetch(api, {
@@ -74,9 +90,48 @@ const WorkoutPage = () => {
         }
     }
     
+    const onRemoveBtnClick = async (event) => {
+        const exerciseId = event.target.id
+        try{
+            const {data} = await removeExercise({
+                variables: {
+                    workoutId, exerciseId
+                }
+            })
+
+            window.location.assign(`/userworkouts/${workoutId}`);
+        }
+        catch(err){
+            console.error(err);
+        }
+    }
 
     return (
         <div className="workout-page">
+            <div className="my-workout">
+                <h1>{workoutTitle}</h1>
+                <div className="my-exercises">
+                    {userExercises && userExercises.map((exercise, index) => (
+                        <Box
+                        w="45%"
+                        key={index}
+                        borderWidth="1px"
+                        borderRadius="lg"
+                        margin="3px"
+                        padding="1px">
+                            <div className="my-exercise">
+                                <h2>{exercise.exerciseTitle}</h2>
+                                <h3>{exercise.exerciseDescription}</h3>
+                                <Button
+                                colorScheme="red"
+                                size="sm"
+                                id={exercise._id}
+                                onClick={onRemoveBtnClick}>Remove Exercise</Button>
+                            </div>
+                        </Box>
+                    ))}
+                </div>
+            </div>
             <div className="workout-search">
                 <label htmlFor="equipment">Select your equipment:</label>
                 <select name="equipment" id="equipment" defaultValue={equipment} onChange={handleEquipmentChange}>

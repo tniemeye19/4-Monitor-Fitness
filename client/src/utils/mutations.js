@@ -25,20 +25,29 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_WORKOUT = gql`
-    mutation addWorkout($workoutTitle: String!){
-        addWorkout(workoutTitle: $workoutTitle){
+    mutation addWorkout($workoutTitle: String!, $username: String!){
+        addWorkout(workoutTitle: $workoutTitle, username: $username){
             _id
+            workoutTitle
             username
-            workouts{
+            createdAt
+            exercises{
                 _id
-                workoutTitle
+                exerciseTitle
+                exerciseDescription
                 createdAt
-                exercises{
-                    exerciseTitle
-                    exerciseDescription
-                    createdAt
-                }
             }
+        }
+    }
+`;
+
+export const DELETE_WORKOUT = gql`
+    mutation deleteWorkout($workoutId: ID!){
+        deleteWorkout(workoutId: $workoutId){
+            _id
+            workoutTitle
+            username
+            createdAt
         }
     }
 `;
@@ -47,17 +56,24 @@ export const ADD_EXERCISE = gql`
     mutation AddExercise($workoutId: ID!, $exerciseTitle: String!, $exerciseDescription: String!){
         addExercise(workoutId: $workoutId, exerciseTitle: $exerciseTitle, exerciseDescription: $exerciseDescription){
             _id
+            workoutTitle
             username
-            workouts{
+            createdAt
+            exercises{
                 _id
-                workoutTitle
+                exerciseTitle
+                exerciseDescription
                 createdAt
-                exercises{
-                    exerciseTitle
-                    exerciseDescription
-                    createdAt
-                }
             }
+        }
+    }
+`;
+
+export const REMOVE_EXERCISE = gql`
+    mutation removeExercise($workoutId: ID!, $exerciseId: ID!){
+        removeExercise(workoutId: $workoutId, exerciseId: $exerciseId){
+            _id
+            createdAt
         }
     }
 `;

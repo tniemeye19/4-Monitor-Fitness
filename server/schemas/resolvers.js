@@ -31,7 +31,9 @@ const resolvers = {
                 .sort({createdAt: -1});
         },
         workout: async (parent, {_id}) => {
-            return User.findOne({_id});
+            return Workout.findOne({_id})
+                .populate("exercises")
+                .sort({createdAt: -1});
         }
     },
     Mutation: {
@@ -58,30 +60,42 @@ const resolvers = {
         },
         addWorkout: async (parent, args, context) => {
             if(context.user){
+                const workout = await Workout.create(args);
                 const updatedUser = await User.findByIdAndUpdate(
                     {_id: context.user._id},
-                    {$push: {workouts: args}},
+                    {$push: {workouts: workout}},
                     {new: true}
-                );
-
+                )
                 return updatedUser;
             }
 
-            // console.log(parent);
-            // console.log(args);
-            console.log(context.user);
-
             throw new AuthenticationError("You need to be logged in.")
+        },
+        deleteWorkout: async (parent, {workoutId}, context) => {
+            await Workout.findByIdAndDelete(workoutId);
         },
         addExercise: async (parent, args, context) => {
             if(context.user){
-                const updatedUser = await User.findByIdAndUpdate(
-                    {_id: context.user._id},
-                    {$push: {workouts: {$push: {exercises: {...args}}}}},
+                const updatedWorkout = await Workout.findByIdAndUpdate(
+                    {_id: args.workoutId},
+                    {$push: {exercises: args}},
                     {new: true}
                 )
 
-                return updatedUser;
+                return updatedWorkout;
+            }
+
+            throw new AuthenticationError("You need to be logged in.")
+        },
+        removeExercise: async (parents, args, context) => {
+            if(context.user){
+                const updatedWorkout = await Workout.findByIdAndUpdate(
+                    {_id: args.workoutId},
+                    {$pull: {exercises: {_id: args.exerciseId}}},
+                    {new: true}
+                )
+
+                return updatedWorkout;
             }
 
             throw new AuthenticationError("You need to be logged in.")
