@@ -22,9 +22,14 @@ export const QUERY_USER = gql`
             username
             email
             workouts{
-                _id
                 workoutTitle
                 createdAt
+                username
+                exercises {
+                    exerciseTitle
+                    exerciseDescription
+                    createdAt
+                }
             }
         }
     }
@@ -39,6 +44,12 @@ export const QUERY_USERS = gql`
             workouts {
                 workoutTitle
                 createdAt
+                username
+                exercises {
+                    exerciseTitle
+                    exerciseDescription
+                    createdAt
+                }
             }
         }
     }

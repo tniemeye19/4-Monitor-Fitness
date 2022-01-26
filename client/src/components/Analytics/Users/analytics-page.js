@@ -15,8 +15,8 @@ import {
 import { Bar } from 'react-chartjs-2';
 import faker from 'faker';
 
-import Auth from '../../utils/auth';
-import { QUERY_USERS } from '../../utils/queries';
+import Auth from '../../../utils/auth';
+import { QUERY_USERS } from '../../../utils/queries';
 
 ChartJS.register(
   CategoryScale,
@@ -27,12 +27,54 @@ ChartJS.register(
   Legend
 );
 
-const AnalyticsPage = () => {
+const UsersAnalyticsPage = () => {
+
+    let labels = [];
+    let userWorkouts = [];
+    let userExercises = [];
 
     const { loading, error, data } = useQuery(QUERY_USERS);
-    const allUsersData = { data }
-    console.log("All users data: ", allUsersData);
 
+    if (loading) {
+        return <h2>Loading...</h2>
+    }
+
+    try {
+        
+        let allUsersData = { data }
+        console.log('Users Data: ', allUsersData)
+        let totalUsers = allUsersData.data.users.length;
+        console.log('Length: ', totalUsers);
+
+        for (let i = 0; i < totalUsers; i++) {
+            let username = allUsersData.data.users[i].username;
+            let userWorkoutsLength = allUsersData.data.users[i].workouts.length;
+            let userSingleWorkout = allUsersData.data.users[i].workouts;
+            console.log(userWorkoutsLength)
+            labels.push(username);
+            userWorkouts.push(userWorkoutsLength);
+            for (let j = 0; j < userWorkoutsLength; j++) {
+                let userExercisesLength = userSingleWorkout[j].exercises.length;
+                console.log(userExercisesLength)
+                if (userExercisesLength === 0) {
+                    let zero = "zerp";
+                    userExercises.push(zero);
+                    console.log(userExercises);
+                } else {
+                    console.log(userExercisesLength);
+                    console.log(j);
+                    userExercises.push(userExercisesLength);
+                    console.log(userExercises);
+                }
+
+            }
+            
+        }
+
+    }   catch (err) {
+        console.log(err);
+    }
+    
     const options = {
         responsive: true,
         plugins: {
@@ -56,8 +98,6 @@ const AnalyticsPage = () => {
         }
     };
 
-    const labels = ['Fun', 'Not Fun', 'Easy', 'Hard'] //map through each user to get all users and their labels in ['label', 'label'] format
-
     const graphData = {
         labels,
         datasets: [
@@ -73,7 +113,6 @@ const AnalyticsPage = () => {
                 backgroundColor: 'rgba(41, 133, 90, 0.9)',
                 hoverOffset: 4
             },
-
         ]
     }
 
@@ -91,4 +130,4 @@ const AnalyticsPage = () => {
     )
 }
 
-export default AnalyticsPage;
+export default UsersAnalyticsPage;
