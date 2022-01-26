@@ -72,6 +72,10 @@ const resolvers = {
             throw new AuthenticationError("You need to be logged in.")
         },
         deleteWorkout: async (parent, {workoutId}, context) => {
+            await Workout.findByIdAndUpdate(
+                {_id: workoutId},
+                {$pull: {exercises: {}}}
+            )
             await Workout.findByIdAndDelete(workoutId);
         },
         addExercise: async (parent, args, context) => {
