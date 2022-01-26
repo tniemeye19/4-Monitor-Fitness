@@ -23,8 +23,11 @@ const UserDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
   const navigate = useNavigate();
+  let username = '';
 
-  let username = Auth.getProfile().data.username;
+  if (Auth.loggedIn()) {
+    username = Auth.getProfile().data.username;
+  }
 
   const logout = (e) => {
     
@@ -64,7 +67,9 @@ const UserDrawer = () => {
           <DrawerCloseButton />
           <DrawerHeader>
             <Heading color="#023480" fontSize="3xl" fontWeight="bold">4 Monitor Fitness</Heading>
-            <p>Logged in as {username}</p>
+            {Auth.loggedIn() ? (
+              <p>Logged in as {username}</p>
+            ) : null}
           </DrawerHeader>
 
           <DrawerBody>
