@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import { Button, Box } from '@chakra-ui/react';
+import { useMutation } from "@apollo/client";
+import { ADD_EXERCISE } from "../../utils/mutations";
+import Auth from "../../utils/auth";
 
 const WorkoutPage = () => {
     const [equipment, setEquipment] = useState("7");
 
     const [exercises, setExercises] = useState(null);
+
+    const [addExercise, {error}] = useMutation(ADD_EXERCISE);
+
+    const url = window.location;
+
+    const workoutId = url.toString().split("/")[4];
 
     const handleEquipmentChange = (e) => {
         setEquipment(e.target.value);
@@ -30,6 +39,39 @@ const WorkoutPage = () => {
                 console.log("error");
             }
         })
+    }
+
+    const handleAddExercise = async (event) => {
+        const exerciseName = event.target.parentElement.children[0].innerText;
+        const exerciseDescription = event.target.parentElement.children[1].innerText;
+
+        event.preventDefault();
+
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+        const exerciseData = {
+            exerciseTitle: exerciseName,
+            exerciseDescription: exerciseDescription
+        }
+
+        
+        if(!token){
+            return false
+        }
+
+        try{
+            const {data} = await addExercise({
+                variables: {
+                    workoutId: workoutId,
+                    exerciseTitle: exerciseName,
+                    exerciseDescription: exerciseDescription
+                }
+            })
+            console.log(data);
+        }
+        catch(err){
+            console.error(err);
+        }
     }
     
 
@@ -75,7 +117,8 @@ const WorkoutPage = () => {
                                     <Button
                                     className="add-btn"
                                     colorScheme="red"
-                                    size="sm">Add Exercise</Button>
+                                    size="sm"
+                                    onClick={handleAddExercise}>Add Exercise</Button>
                                 </div>
                             </Box>
                         ))}

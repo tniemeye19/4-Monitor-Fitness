@@ -73,15 +73,15 @@ const resolvers = {
 
             throw new AuthenticationError("You need to be logged in.")
         },
-        addExercise: async (parent, {workoutId, exerciseTitle}, context) => {
+        addExercise: async (parent, args, context) => {
             if(context.user){
-                const updatedWorkout = await Workout.findOneAndUpdate(
-                    {_id: workoutId},
-                    {$push: {exercises: {exerciseTitle, username: context.user.username}}},
-                    {new: true, runValidators: true}
-                );
+                const updatedUser = await User.findByIdAndUpdate(
+                    {_id: context.user._id},
+                    {$push: {workouts: {$push: {exercises: {...args}}}}},
+                    {new: true}
+                )
 
-                return updatedWorkout;
+                return updatedUser;
             }
 
             throw new AuthenticationError("You need to be logged in.")

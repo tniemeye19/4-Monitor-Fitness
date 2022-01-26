@@ -1,41 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, FormControl, FormLabel, Input, Box} from '@chakra-ui/react';
 
 import { ADD_WORKOUT } from "../../utils/mutations";
 import { useMutation, useQuery } from "@apollo/client";
-import { GET_ME, QUERY_WORKOUTS } from "../../utils/queries";
+import { GET_ME, QUERY_USER, QUERY_WORKOUTS } from "../../utils/queries";
 import Auth from "../../utils/auth";
+import { Navigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 
 
 
 const UserWorkoutPage = () => {
-    const userData = Auth.getProfile();
-    const username = userData.data.username;
-    
+    const userInfo = Auth.getProfile();
+    const username = userInfo.data.username
+
+    const navigate = useNavigate();
 
     const [workouts, setWorkouts] = useState(null);
 
     
-    // const {loading, data} = useQuery(GET_ME);
-
-    // const {loading2, data2} = useQuery(QUERY_WORKOUTS);
+    const {loading, data} = useQuery(QUERY_USER, {
+        variables: {username}
+    });
 
     const [addWorkout, {error}] = useMutation(ADD_WORKOUT);
-
-    // const [userData, setUserData] = useState(loading ? null : data?.me);
-
-    // const [workoutData, setWorkoutData] = useState(loading2 ? null : data2?.me)
-
-    
-    
-
+        
     const [workoutTitle, setWorkoutTitle] = useState("");
 
-    // if(loading){
-    //     return <div>Loading...</div>
-    // }
 
+    useEffect(() => {
+        if(data){
+            setWorkouts(data.user.workouts);
+        }
+    }, [data])
 
     const handleWorkoutSubmit = async (event) => {
         event.preventDefault();
@@ -64,7 +62,9 @@ const UserWorkoutPage = () => {
         }
     }
 
-    
+    const onEditBtnClick = (event) => {
+        navigate(`/userworkouts/${event.target.id}`);
+    }
     
 
     return (
@@ -87,7 +87,7 @@ const UserWorkoutPage = () => {
                 <h1>Workouts</h1>
                 {workouts && (
                     <div className="workouts">
-                        {workouts.map((workout, index) => (
+                        {workouts && workouts.map((workout, index) => (
                             <Box
                             w="45%"
                             key={index}
@@ -97,6 +97,9 @@ const UserWorkoutPage = () => {
                             padding="1px">
                                 <div className="workout">
                                     <h2>{workout.workoutTitle}</h2>
+                                    <Button
+                                    onClick={onEditBtnClick}
+                                    id={workout._id}>Edit Workout</Button>
                                 </div>
                             </Box>
                         ))}

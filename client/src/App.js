@@ -45,7 +45,7 @@ function App() {
           </div>
           <Routes>
             <Route path='/welcome' element={<Welcome />} />
-            <Route path="/workout" element={<WorkoutPage />} />
+            <Route path="/userworkouts/:id" element={<WorkoutPage />} />
             <Route path="/userworkouts" element={<UserWorkoutPage />} />
             <Route path='/' element={<LandingPage />} />
           </Routes>

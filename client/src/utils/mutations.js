@@ -33,6 +33,30 @@ export const ADD_WORKOUT = gql`
                 _id
                 workoutTitle
                 createdAt
+                exercises{
+                    exerciseTitle
+                    exerciseDescription
+                    createdAt
+                }
+            }
+        }
+    }
+`;
+
+export const ADD_EXERCISE = gql`
+    mutation AddExercise($workoutId: ID!, $exerciseTitle: String!, $exerciseDescription: String!){
+        addExercise(workoutId: $workoutId, exerciseTitle: $exerciseTitle, exerciseDescription: $exerciseDescription){
+            _id
+            username
+            workouts{
+                _id
+                workoutTitle
+                createdAt
+                exercises{
+                    exerciseTitle
+                    exerciseDescription
+                    createdAt
+                }
             }
         }
     }
