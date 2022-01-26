@@ -20,7 +20,9 @@
     "url": "https://github.com/tniemeye19/4-Monitor-Fitness/issues"
   },
   "homepage": "https://github.com/tniemeye19/4-Monitor-Fitness#readme",
-  "dependencies": {},
+  "dependencies": {
+    "node-sass": "^7.0.1"
+  },
   "devDependencies": {
     "concurrently": "^7.0.0"
   }

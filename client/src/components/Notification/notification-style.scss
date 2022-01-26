@@ -1,0 +1,23 @@
+.signup-alert-dialog-container {
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
+
+    .signup-alert-dialog-content {
+        border: solid 3px #023480;;
+        text-align: center;
+        background-color: antiquewhite !important;
+
+        .signup-alert-dialog-header {
+            color: #023480;
+        }
+    
+        .signup-alert-dialog-footer {
+            justify-content: center;
+    
+            .signup-alert-dialog-button {
+                width: 300px;
+                outline-color: #023480;
+                color: antiquewhite;
+            }
+        }
+    }
+}
