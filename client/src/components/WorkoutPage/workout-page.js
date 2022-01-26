@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Button, Box } from '@chakra-ui/react';
+import { Button, Box, Heading } from '@chakra-ui/react';
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_EXERCISE, REMOVE_EXERCISE } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import { QUERY_WORKOUT } from "../../utils/queries";
+import "./workoutpage-style.scss";
 
 const WorkoutPage = () => {
     const url = window.location;
@@ -108,17 +109,22 @@ const WorkoutPage = () => {
 
     return (
         <div className="workout-page">
+            <Heading>{workoutTitle}</Heading>
             <div className="my-workout">
-                <h1>{workoutTitle}</h1>
                 <div className="my-exercises">
                     {userExercises && userExercises.map((exercise, index) => (
                         <Box
-                        w="45%"
-                        key={index}
-                        borderWidth="1px"
+                        w="40%" 
+                        key={index} 
+                        borderWidth="1px" 
                         borderRadius="lg"
                         margin="3px"
-                        padding="1px">
+                        padding="1px"
+                        alignItems="baseline"
+                        backgroundColor="antiquewhite"
+                        padding="1rem"
+                        border="solid 3px #023480"
+                        border-radius="5px">
                             <div className="my-exercise">
                                 <h2>{exercise.exerciseTitle}</h2>
                                 <h3>{exercise.exerciseDescription}</h3>
@@ -133,6 +139,7 @@ const WorkoutPage = () => {
                 </div>
             </div>
             <div className="workout-search">
+                <div className="exercise-input">
                 <label htmlFor="equipment">Select your equipment:</label>
                 <select name="equipment" id="equipment" defaultValue={equipment} onChange={handleEquipmentChange}>
                     <option value="1">Barbell</option>
@@ -146,6 +153,7 @@ const WorkoutPage = () => {
                     <option value="9">Incline bench</option>
                     <option value="10">Kettlebell</option>
                 </select>
+                </div>
                 <Button
                     className="search-btn"
                     colorScheme="orange"
@@ -154,18 +162,22 @@ const WorkoutPage = () => {
                     Search
                 </Button>
             </div>
-            <div className="workoutList">
-                <h1>Exercises</h1>
+            <div className="exerciseList">
                 {exercises && (
                     <div className="exercises">
                         {exercises.map((exercise, index) => (
                             <Box 
-                            w="45%" 
+                            w="40%" 
                             key={index} 
                             borderWidth="1px" 
                             borderRadius="lg"
                             margin="3px"
-                            padding="1px">
+                            padding="1px"
+                            alignItems="baseline"
+                            backgroundColor="antiquewhite"
+                            padding="1rem"
+                            border="solid 3px #023480"
+                            border-radius="5px">
                                 <div className="exercise">
                                     <h2>{exercise.name}</h2>
                                     <h3>{exercise.description}</h3>
