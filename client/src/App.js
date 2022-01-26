@@ -9,6 +9,7 @@ import UserDrawer from './components/UserDrawer/user-drawer';
 import WorkoutPage from './components/WorkoutPage/workout-page';
 import UserWorkoutPage from './components/UserWorkoutsPage/user-workout-page';
 import SignupNotification from './components/Notification/signup-notification';
+import AnalyticsPage from './components/Analytics/analytics-page';
 
 import './App.css';
 
@@ -43,6 +44,7 @@ function App() {
             <SignupNotification />
           </div>
           <Routes>
+            <Route path='/analytics' element={<AnalyticsPage />} />
             <Route path='/welcome' element={<Welcome />} />
             <Route path="/workout" element={<WorkoutPage />} />
             <Route path="/userworkouts" element={<UserWorkoutPage />} />
