@@ -86,28 +86,24 @@ const UsersAnalyticsPage = () => {
                 text: '4 Monitor Fitness Workout Data'
             },
         },
-        scales: {
-            x: {
-                stacked: true,
-            }
-        }
     };
 
     const graphData = {
         labels,
         datasets: [
             {
-                label: 'Exercises',
-                data: userExercises,
-                backgroundColor: 'rgba(1, 20, 50, 0.9)',
-                hoverOffset: 4
-            },
-            {
                 label: 'Workouts',
                 data: userWorkouts,
                 backgroundColor: 'rgba(41, 133, 90, 0.9)',
                 hoverOffset: 4
             },
+            {
+                label: 'Exercises',
+                data: userExercises,
+                backgroundColor: 'rgba(1, 20, 50, 0.9)',
+                hoverOffset: 4
+            },
+
         ]
     }
 
