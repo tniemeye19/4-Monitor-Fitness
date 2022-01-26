@@ -1,6 +1,5 @@
 import React from 'react';
 import './user-drawer-style.scss';
-import './user-drawer-theme.scss';
 
 import {
     Button,

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './signup-style.scss';
-import './signup-theme.scss';
 
 import { 
     Button,
@@ -74,11 +73,11 @@ const Signup = () => {
                         value={formState.username}
                         onChange={accountForChange}
                     />
-                    {/* {error && (
+                    {error && (
                         <FormErrorMessage>
                             Username is required to signup
                         </FormErrorMessage>
-                    )} */}
+                    )}
                 </div>
                 <div>
                     <FormLabel htmlFor='email'>Email Address:</FormLabel>
@@ -90,11 +89,11 @@ const Signup = () => {
                         value={formState.email}
                         onChange={accountForChange}
                     />
-                    {/* {error && (
+                    {error && (
                         <FormErrorMessage>
                             Email is required to signup
                         </FormErrorMessage>
-                    )} */}
+                    )}
                 </div>
                 <div>
                     <FormLabel htmlFor='signuppwd'>Password:</FormLabel>
@@ -106,11 +105,11 @@ const Signup = () => {
                         value={formState.password}
                         onChange={accountForChange}
                     />
-                    {/* {error && (
+                    {error && (
                         <FormErrorMessage>
                             Password is required to signup
                         </FormErrorMessage>
-                    )} */}
+                    )}
                 </div>
                 <Button 
                     className='signupBtn'

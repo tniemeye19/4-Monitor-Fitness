@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './login-style.scss';
-import './login-theme.scss';
 
 import { 
     Button,
@@ -29,6 +28,7 @@ const Login = () => {
     };
 
     const handleLoginSubmit = async (event) => {
+        event.preventDefault();
 
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
@@ -36,13 +36,9 @@ const Login = () => {
             event.stopPropagation();
         }
 
-        event.preventDefault();
-
-        console.log(formState);
-
         try {
-            const {data} = await login({
-                variables: {...formState}
+            const { data } = await login({
+                variables: { ...formState }
             });
 
             const value = false;
@@ -68,11 +64,11 @@ const Login = () => {
                         id='email'
                         onChange={accountForChange}
                     />
-                    {/* {error && (
+                    {error && (
                         <FormErrorMessage>
                             Email is required to login
                         </FormErrorMessage>
-                    )} */}
+                    )}
                 </div>
                 <div>
                     <FormLabel htmlFor='loginpwd'>Password:</FormLabel>
@@ -83,11 +79,11 @@ const Login = () => {
                         id='loginpwd'
                         onChange={accountForChange}
                     />
-                    {/* {error && (
+                    {error && (
                         <FormErrorMessage>
                             Password is required to login
                         </FormErrorMessage>
-                    )} */}
+                    )}
                 </div>
                 <Button 
                     className='loginBtn'
@@ -99,8 +95,6 @@ const Login = () => {
             </FormControl>
             </>
         )}
-
-
         </div>
     )
 }

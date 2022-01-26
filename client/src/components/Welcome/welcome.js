@@ -1,16 +1,15 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import './welcome-style.scss';
-import './welcome-theme.scss';
+
 import UserAuth from '../UserAuth/user-auth';
 import { Button, Heading, useDisclosure } from '@chakra-ui/react';
 import { BsDisplay } from 'react-icons/bs';
-import { ImStatsBars } from 'react-icons/im';
 
+import { useNavigate } from 'react-router-dom';
 import Auth from '../../utils/auth';
 
 const Welcome = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { onClose } = useDisclosure()
     const navigate = useNavigate();
 
     const onWorkoutsBtnClick = () => {
