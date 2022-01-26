@@ -22,6 +22,7 @@ export const QUERY_USER = gql`
             username
             email
             workouts{
+                _id
                 workoutTitle
                 createdAt
             }
@@ -51,6 +52,7 @@ export const QUERY_WORKOUTS = gql`
             createdAt
             username
             exercises{
+                _id
                 exerciseTitle
                 exerciseDescription
                 createdAt
@@ -67,6 +69,7 @@ export const QUERY_WORKOUT = gql`
             createdAt
             username
             exercises{
+                _id
                 exerciseTitle
                 exerciseDescription
                 createdAt
