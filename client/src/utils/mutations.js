@@ -48,6 +48,12 @@ export const DELETE_WORKOUT = gql`
             workoutTitle
             username
             createdAt
+            exercises{
+                _id
+                exerciseTitle
+                exerciseDescription
+                createdAt
+            }
         }
     }
 `;
