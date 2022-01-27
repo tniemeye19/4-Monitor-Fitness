@@ -109,9 +109,9 @@ const WorkoutPage = () => {
 
     return (
         <div className="workout-page">
-            <Heading>{workoutTitle}</Heading>
             <div className="workout-search">
                 <div className="exercise-input">
+                <Heading>{workoutTitle}</Heading>
                 <label htmlFor="equipment">Select your equipment:</label>
                 <select name="equipment" id="equipment" defaultValue={equipment} onChange={handleEquipmentChange}>
                     <option value="1">Barbell</option>
@@ -125,7 +125,6 @@ const WorkoutPage = () => {
                     <option value="9">Incline bench</option>
                     <option value="10">Kettlebell</option>
                 </select>
-                </div>
                 <Button
                     className="search-btn"
                     colorScheme="orange"
@@ -133,22 +132,22 @@ const WorkoutPage = () => {
                     onClick={exerciseSearch}>
                     Search
                 </Button>
+                </div>
             </div>
             <div className="both-ex-wo">
                 <div className="my-workout">
                     <div className="my-exercises">
                         {userExercises && userExercises.map((exercise, index) => (
                             <Box
-                            w="40%" 
+                            w="100%" 
                             key={index} 
                             borderWidth="1px" 
                             borderRadius="lg"
                             margin="3px"
                             padding="1px"
-                            alignItems="baseline"
                             backgroundColor="antiquewhite"
                             padding="1rem"
-                            border="solid 3px #023480"
+                            border="solid 3px rgb(41, 133, 90)"
                             border-radius="5px">
                                 <div className="my-exercise">
                                     <h2>{exercise.exerciseTitle}</h2>
@@ -168,7 +167,7 @@ const WorkoutPage = () => {
                         <div className="exercises">
                             {exercises.map((exercise, index) => (
                                 <Box 
-                                w="40%" 
+                                w="100%" 
                                 key={index} 
                                 borderWidth="1px" 
                                 borderRadius="lg"
@@ -177,7 +176,7 @@ const WorkoutPage = () => {
                                 alignItems="baseline"
                                 backgroundColor="antiquewhite"
                                 padding="1rem"
-                                border="solid 3px #023480"
+                                border="solid 3px rgb(236, 201, 75)"
                                 border-radius="5px">
                                     <div className="exercise">
                                         <h2>{exercise.name}</h2>

@@ -1,51 +1,56 @@
-.workout-page, .workout-search, .my-workout, .exerciseList {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    text-shadow: 2px 2px 6px whitesmoke;
-    align-items: center;
-}
 
 .workout-page {
+    text-align: center;
+}
 
-    .both-ex-wo {
-        display: inline-block;
-        flex-direction: column;
+.workout-page::after {
+    content: "";
+    opacity: 0.4;
+    background-image: url("../../assets/images/landingpagehome.png");
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: -1;
+}
 
+.workout-search {
+    display: flex;
+    justify-content: center;
+}
+
+.exercise-input {
+    background-color: antiquewhite;
+    padding: 2rem;
+    border: solid 3px #023480;
+    border-radius: 10px;
+    label {
+        font-size: 1.3rem;
+        margin: 0 1rem;
     }
+    select {
+        margin: 0 1rem;
+    }
+    Button {
+        margin: 0 1rem;
+    }
+}
+
+.both-ex-wo {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 2rem;
     .my-workout {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        float: left;
-        .my-exercises {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-            align-items: stretch;
-        }
-    }
-    .workout-search {
-        margin: 20px 0 20px 0;
-        .exercise-input {
-            padding: 0px 0px 10px 0px;
-        }
+        display: block;
+        width: 35%;
     }
     .exerciseList {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        float: right;
-        .exercises {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-            align-items: stretch;
-            
-        }
+        display: block;
+        width: 35%;
     }
 }

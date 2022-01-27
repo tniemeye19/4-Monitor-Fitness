@@ -1,0 +1,49 @@
+.user-workout-page::after {
+    content: "";
+    opacity: 0.4;
+    background-image: url("../../assets/images/landingpagehome.png");
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.user-workout-page {
+    width: 100vw;
+    height: 100vh;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    color:  #023480;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+
+    .uw-form {
+        
+        height: 200px;
+        width: 280px;
+        background-color: antiquewhite;
+        border: solid 3px #023480;
+        margin: 4rem auto;
+        padding: 0 1rem;
+        label {
+            text-align: center;
+        }
+        input {
+            padding: 0 0.5rem;
+            margin-bottom: 1rem;
+        }
+        button {
+            align-self: middle;
+        }
+    }
+}

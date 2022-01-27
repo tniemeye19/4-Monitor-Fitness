@@ -8,7 +8,7 @@ import Auth from "../../utils/auth";
 import { Navigate } from "react-router";
 import { useNavigate } from "react-router-dom";
 
-
+import './user-workout-page.scss';
 
 
 const UserWorkoutPage = () => {
@@ -80,8 +80,8 @@ const UserWorkoutPage = () => {
     }
 
     return (
-        <div>
-            <FormControl>
+        <div className="user-workout-page">
+            <FormControl className="uw-form">
                 <FormLabel htmlFor="workoutTitle">Workout Title:</FormLabel>
                 <Input 
                     placeholder="Workout Title"

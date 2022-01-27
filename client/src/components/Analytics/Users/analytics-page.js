@@ -91,13 +91,13 @@ const UsersAnalyticsPage = () => {
         datasets: [
             {
                 label: 'Workouts',
-                data: userWorkouts,
+                data: labels.map(() => faker.datatype.number({ min: 0, max: 10 })),
                 backgroundColor: 'rgba(41, 133, 90, 0.9)',
                 hoverOffset: 4
             },
             {
                 label: 'Exercises',
-                data: userExercises,
+                data: labels.map(() => faker.datatype.number({ min: 0, max: 50 })),
                 backgroundColor: 'rgba(1, 20, 50, 0.9)',
                 hoverOffset: 4
             },
