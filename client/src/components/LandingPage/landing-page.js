@@ -1,12 +1,11 @@
 import React from 'react';
-
-import { useNavigate } from 'react-router-dom';
-
 import './landing-page-style.scss';
-import './landing-page-theme.scss';
+
 import { Button, Heading } from '@chakra-ui/react';
 import { BsDisplay } from 'react-icons/bs';
 import { AiOutlineCode } from 'react-icons/ai';
+
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
 

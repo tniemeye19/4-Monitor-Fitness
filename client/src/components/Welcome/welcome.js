@@ -1,16 +1,15 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import './welcome-style.scss';
-import './welcome-theme.scss';
+
 import UserAuth from '../UserAuth/user-auth';
 import { Button, Heading, useDisclosure } from '@chakra-ui/react';
 import { BsDisplay } from 'react-icons/bs';
-import { ImStatsBars } from 'react-icons/im';
 
+import { useNavigate } from 'react-router-dom';
 import Auth from '../../utils/auth';
 
 const Welcome = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { onClose } = useDisclosure()
     const navigate = useNavigate();
 
     const onWorkoutsBtnClick = () => {
@@ -46,12 +45,14 @@ const Welcome = () => {
                     </>
                 ) : (
                     <>
-                    <Heading size='xl'>Welcome back!</Heading>
-                    <Heading size='xl'>Where do you want to go?</Heading>
-                    <div className='welcome-route-btns'>
-                        <Button colorScheme='teal' onClick={onWorkoutsBtnClick}>My Workouts</Button>
-                        <Button colorScheme='green' onClick={onAnalyticsBtnClick}>Analytics</Button>
-                        <Button colorScheme='yellow' onClick={onUserAnalyticsBtnClick}>My Analytics</Button>
+                    <div className="auth-welcome-content">
+                        <Heading size='xl'>Welcome back!</Heading>
+                        <Heading size='xl'>Where to now?</Heading>
+                        <div className='welcome-route-btns'>
+                            <Button colorScheme='teal' onClick={onWorkoutsBtnClick} size="lg">My Workouts</Button>
+                            <Button colorScheme='green' onClick={onAnalyticsBtnClick} size="lg">Analytics</Button>
+                            <Button colorScheme='yellow' onClick={onUserAnalyticsBtnClick} size="lg">My Analytics</Button>
+                        </div>
                     </div>
                     </>
                 )}

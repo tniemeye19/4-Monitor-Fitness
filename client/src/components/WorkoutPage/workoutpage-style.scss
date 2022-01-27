@@ -9,10 +9,17 @@
 }
 
 .workout-page {
+
+    .both-ex-wo {
+        display: inline-block;
+        flex-direction: column;
+
+    }
     .my-workout {
         display: flex;
         flex-direction: row;
         align-items: center;
+        float: left;
         .my-exercises {
             display: flex;
             flex-direction: row;
@@ -31,6 +38,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        float: right;
         .exercises {
             display: flex;
             flex-direction: row;

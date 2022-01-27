@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import './login-style.scss';
-import './login-theme.scss';
 
 import { 
     Button,
     FormControl,
-    FormErrorMessage,
     FormLabel,
     Heading,
     Input 
@@ -29,6 +27,7 @@ const Login = () => {
     };
 
     const handleLoginSubmit = async (event) => {
+        event.preventDefault();
 
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
@@ -36,13 +35,9 @@ const Login = () => {
             event.stopPropagation();
         }
 
-        event.preventDefault();
-
-        console.log(formState);
-
         try {
-            const {data} = await login({
-                variables: {...formState}
+            const { data } = await login({
+                variables: { ...formState }
             });
 
             const value = false;
@@ -52,6 +47,28 @@ const Login = () => {
             console.log(err);
         }
     };
+
+    const tryAgainSubmit = (event) => {
+        event.preventDefault();
+        window.location.reload(false);
+    }
+
+    if (error) {
+        return (
+            <>
+            <div className="error">
+                <p>You did not fill out the form correctly</p>
+                <Button 
+                    className='signupBtn'
+                    colorScheme='red' 
+                    size='md' 
+                    type='submit'
+                    onClick={tryAgainSubmit}>Try Again
+                </Button>
+            </div>
+            </>
+        )
+    }
 
     return (
         <div className='login'>
@@ -68,11 +85,6 @@ const Login = () => {
                         id='email'
                         onChange={accountForChange}
                     />
-                    {/* {error && (
-                        <FormErrorMessage>
-                            Email is required to login
-                        </FormErrorMessage>
-                    )} */}
                 </div>
                 <div>
                     <FormLabel htmlFor='loginpwd'>Password:</FormLabel>
@@ -83,11 +95,6 @@ const Login = () => {
                         id='loginpwd'
                         onChange={accountForChange}
                     />
-                    {/* {error && (
-                        <FormErrorMessage>
-                            Password is required to login
-                        </FormErrorMessage>
-                    )} */}
                 </div>
                 <Button 
                     className='loginBtn'
@@ -99,8 +106,6 @@ const Login = () => {
             </FormControl>
             </>
         )}
-
-
         </div>
     )
 }

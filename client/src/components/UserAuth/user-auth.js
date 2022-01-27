@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './user-auth-style.scss';
-import './user-auth-theme.scss';
+
 import { BiLogInCircle } from 'react-icons/bi';
 import { GiArchiveRegister } from 'react-icons/gi';
 import { Button } from '@chakra-ui/react';
+
 import Login from '../Login/login';
 import Signup from '../Signup/signup';
 

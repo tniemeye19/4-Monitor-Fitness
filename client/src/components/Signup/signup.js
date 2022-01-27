@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './signup-style.scss';
-import './signup-theme.scss';
 
 import { 
     Button,
@@ -58,6 +57,28 @@ const Signup = () => {
         }
     }
 
+    const tryAgainSubmit = (event) => {
+        event.preventDefault();
+        window.location.reload(false);
+    }
+
+    if (error) {
+        return (
+            <>
+            <div className="error">
+                <p>You did not fill out the form correctly</p>
+                <Button 
+                    className='signupBtn'
+                    colorScheme='red' 
+                    size='md' 
+                    type='submit'
+                    onClick={tryAgainSubmit}>Try Again
+                </Button>
+            </div>
+            </>
+        )
+    }
+
     return (
         <div className='signup'>
         {Auth.loggedIn() ? null : (
@@ -74,11 +95,6 @@ const Signup = () => {
                         value={formState.username}
                         onChange={accountForChange}
                     />
-                    {/* {error && (
-                        <FormErrorMessage>
-                            Username is required to signup
-                        </FormErrorMessage>
-                    )} */}
                 </div>
                 <div>
                     <FormLabel htmlFor='email'>Email Address:</FormLabel>
@@ -90,11 +106,6 @@ const Signup = () => {
                         value={formState.email}
                         onChange={accountForChange}
                     />
-                    {/* {error && (
-                        <FormErrorMessage>
-                            Email is required to signup
-                        </FormErrorMessage>
-                    )} */}
                 </div>
                 <div>
                     <FormLabel htmlFor='signuppwd'>Password:</FormLabel>
@@ -106,11 +117,6 @@ const Signup = () => {
                         value={formState.password}
                         onChange={accountForChange}
                     />
-                    {/* {error && (
-                        <FormErrorMessage>
-                            Password is required to signup
-                        </FormErrorMessage>
-                    )} */}
                 </div>
                 <Button 
                     className='signupBtn'
